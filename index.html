@@ -66,13 +66,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .news-card h3 a:hover { color: var(--accent); }
 .news-card .card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; }
 .news-card .card-time { font-size: 12px; color: var(--ink-muted); }
-.news-card .card-detail { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
-.news-card.expanded .card-detail { display: block; }
-.news-card .card-detail p { font-size: 14px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 12px; }
+.news-card .read-hint { font-size: 12px; color: var(--ink-muted); margin-top: 8px; }
 .news-card .read-original { display: inline-block; font-size: 13px; color: var(--accent); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
 .news-card .read-original:hover { color: var(--accent-light); }
-.news-card .expand-hint { font-size: 12px; color: var(--ink-muted); margin-top: 8px; }
-.news-card.expanded .expand-hint { display: none; }
+
+/* 独立阅读视图 */
+.reading-view { max-width: 760px; margin: 0 auto; padding: 40px 24px 60px; }
+.reading-view .back-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-family: var(--sans); margin-bottom: 32px; transition: all 0.2s; }
+.reading-view .back-btn:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.reading-view .reading-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: var(--ink-muted); }
+.reading-view .reading-meta .source-badge { font-weight: 700; color: var(--accent); font-family: var(--serif); letter-spacing: 0.05em; }
+.reading-view h1.reading-title { font-family: var(--serif); font-size: 32px; font-weight: 700; line-height: 1.4; color: var(--ink); margin-bottom: 28px; letter-spacing: -0.01em; }
+.reading-view .reading-content { font-size: 16px; line-height: 2; color: var(--ink-soft); margin-bottom: 36px; }
+.reading-view .reading-content p { margin-bottom: 18px; }
+.reading-view .no-desc { color: var(--ink-muted); font-style: italic; }
 
 .empty-state { text-align: center; padding: 60px 20px; color: var(--ink-muted); }
 .footer { border-top: 2px solid var(--ink); padding: 28px 24px; text-align: center; font-size: 12px; color: var(--ink-muted); }
@@ -86,6 +93,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .search-box { width: 100%; order: -1; }
   .main { padding: 20px 16px 40px; }
   .news-card { padding: 20px 16px; }
+  .reading-view { padding: 24px 16px 48px; }
+  .reading-view h1.reading-title { font-size: 24px; }
+  .reading-view .reading-content { font-size: 15px; line-height: 1.9; }
 }
 </style>
 </head>
@@ -97,7 +107,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <p class="masthead-sub">Global Economic Daily Digest</p>
     <div class="masthead-meta">
       <span class="masthead-date">2026年10月11日 · 星期六</span>
-      <span style="font-size:12px;color:var(--ink-muted);">云端自动更新 · 2026-10-11 21:26</span>
+      <span style="font-size:12px;color:var(--ink-muted);">云端自动更新 · 2026-10-11 21:35</span>
     </div>
   </div>
 </header>
@@ -128,6 +138,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 <main class="main" id="mainContent"></main>
 
+<div class="reading-view" id="readingView" style="display:none;"></div>
+
 <footer class="footer">
   <p>国际来源：Reuters · Financial Times · The Economist · NYT Business · BBC Business · CNBC · NPR</p>
   <p>国内来源：财新网 · 第一财经 · 证券时报 · 财联社</p>
@@ -139,7 +151,7 @@ const ALL_ARTICLES = [
   {
     "title": "周末要闻汇总：事关人工智能等，国务院发布重磅文件",
     "link": "https://www.cls.cn/detail/2501472",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "周末要闻汇总：事关人工智能等新质生产力，国务院发布重磅文件；证监会召开资本市场和金融形势专家座谈会",
     "image": "",
     "sourceId": "cls",
@@ -150,7 +162,7 @@ const ALL_ARTICLES = [
   {
     "title": "沙特利雅得机场遭袭致12死309伤 美总统：美军可能下场",
     "link": "https://www.cls.cn/detail/2501417",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "沙特利雅得机场遭袭致12死309伤 美总统：美军可能下场",
     "image": "",
     "sourceId": "cls",
@@ -161,7 +173,7 @@ const ALL_ARTICLES = [
   {
     "title": "尚无中国公民伤亡报告 中国驻沙特大使馆公布应急电话",
     "link": "https://www.cls.cn/detail/2501400",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "尚无中国公民伤亡报告 中国驻沙特大使馆公布应急电话",
     "image": "",
     "sourceId": "cls",
@@ -172,7 +184,7 @@ const ALL_ARTICLES = [
   {
     "title": "科技股能否回稳？四季度哪些机会值得布局？十大券商策略来了",
     "link": "https://www.cls.cn/detail/2501541",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "科技股能否回稳？四季度哪些机会值得布局？十大券商策略来了",
     "image": "",
     "sourceId": "cls",
@@ -183,7 +195,7 @@ const ALL_ARTICLES = [
   {
     "title": "尊界：踏板升级方案预计于10月底确认，11月起陆续启动升级",
     "link": "https://www.cls.cn/detail/2501557",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "尊界：踏板升级方案预计于10月底确认，11月起陆续启动升级",
     "image": "",
     "sourceId": "cls",
@@ -194,7 +206,7 @@ const ALL_ARTICLES = [
   {
     "title": "人民日报：一辆汽车的刹车踏板，绝不应该在驾驶中出现“断裂”",
     "link": "https://www.cls.cn/detail/2501423",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "",
     "image": "",
     "sourceId": "cls",
@@ -205,7 +217,7 @@ const ALL_ARTICLES = [
   {
     "title": "中汽协：摒弃重形式、轻安全的非理性创新模式",
     "link": "https://www.cls.cn/detail/2501407",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "",
     "image": "",
     "sourceId": "cls",
@@ -214,9 +226,9 @@ const ALL_ARTICLES = [
     "paywall": false
   },
   {
-    "title": "基金规则大改周末刷屏，降门槛等成关键词，多家机构发声",
-    "link": "https://www.cls.cn/detail/2501566",
-    "pubDate": "2026-10-11T21:26:30+08:00",
+    "title": "特朗普现场提议：改名为“特朗普洋”",
+    "link": "https://www.cls.cn/detail/2501592",
+    "pubDate": "2026-10-11T21:35:33+08:00",
     "description": "",
     "image": "",
     "sourceId": "cls",
@@ -227,7 +239,7 @@ const ALL_ARTICLES = [
   {
     "title": "中共中央、国务院，权威定调！吴清最新发声！影响一周市场的十大消息",
     "link": "https://www.stcn.com/article/detail/4211419.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "证券时报，证券时报网，由人民日报社主管主办，是证券市场权威信息披露媒体，也是中国资本市场的重要信息披露平台。提供全天候7*24小时财经证券类资讯，内容丰富，包括时报快讯、股市新闻、财经资讯、基金净值、债券、期货、上市公司公告等，为用户提供全方位、最新鲜的财经信息。打造了",
     "image": "",
     "sourceId": "stcn",
@@ -238,7 +250,7 @@ const ALL_ARTICLES = [
   {
     "title": "PCB股广合科技、景旺电子业绩大增！南向资金爆买两只互联网龙头",
     "link": "https://www.stcn.com/article/detail/4211334.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "证券时报，证券时报网，由人民日报社主管主办，是证券市场权威信息披露媒体，也是中国资本市场的重要信息披露平台。提供全天候7*24小时财经证券类资讯，内容丰富，包括时报快讯、股市新闻、财经资讯、基金净值、债券、期货、上市公司公告等，为用户提供全方位、最新鲜的财经信息。打造了",
     "image": "",
     "sourceId": "stcn",
@@ -249,7 +261,7 @@ const ALL_ARTICLES = [
   {
     "title": "优先股票配置！券商资管四季度最新策略",
     "link": "https://www.stcn.com/article/detail/4211291.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "证券时报，证券时报网，由人民日报社主管主办，是证券市场权威信息披露媒体，也是中国资本市场的重要信息披露平台。提供全天候7*24小时财经证券类资讯，内容丰富，包括时报快讯、股市新闻、财经资讯、基金净值、债券、期货、上市公司公告等，为用户提供全方位、最新鲜的财经信息。打造了",
     "image": "",
     "sourceId": "stcn",
@@ -260,7 +272,7 @@ const ALL_ARTICLES = [
   {
     "title": "超话车｜四部门联手，对“速成车”说不！",
     "link": "https://www.stcn.com/article/detail/4211283.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "证券时报，证券时报网，由人民日报社主管主办，是证券市场权威信息披露媒体，也是中国资本市场的重要信息披露平台。提供全天候7*24小时财经证券类资讯，内容丰富，包括时报快讯、股市新闻、财经资讯、基金净值、债券、期货、上市公司公告等，为用户提供全方位、最新鲜的财经信息。打造了",
     "image": "",
     "sourceId": "stcn",
@@ -271,7 +283,7 @@ const ALL_ARTICLES = [
   {
     "title": "连续高股息+高ROE的稳健增长股，23股上榜，耐心资本长线配置（附名单）",
     "link": "https://www.stcn.com/article/detail/4211258.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "证券时报，证券时报网，由人民日报社主管主办，是证券市场权威信息披露媒体，也是中国资本市场的重要信息披露平台。提供全天候7*24小时财经证券类资讯，内容丰富，包括时报快讯、股市新闻、财经资讯、基金净值、债券、期货、上市公司公告等，为用户提供全方位、最新鲜的财经信息。打造了",
     "image": "",
     "sourceId": "stcn",
@@ -282,7 +294,7 @@ const ALL_ARTICLES = [
   {
     "title": "“老鼠仓”被抓！“90后”遭双重处罚！",
     "link": "https://www.stcn.com/article/detail/4211469.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "",
     "image": "",
     "sourceId": "stcn",
@@ -293,7 +305,7 @@ const ALL_ARTICLES = [
   {
     "title": "尊界：制动踏板升级方案11月起陆续启动升级",
     "link": "https://www.stcn.com/article/detail/4211452.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "",
     "image": "",
     "sourceId": "stcn",
@@ -304,7 +316,7 @@ const ALL_ARTICLES = [
   {
     "title": "不看景点看工厂，“洋厂长”扎堆来华取经",
     "link": "https://www.stcn.com/article/detail/4211446.html",
-    "pubDate": "2026-10-11T21:26:26+08:00",
+    "pubDate": "2026-10-11T21:35:28+08:00",
     "description": "",
     "image": "",
     "sourceId": "stcn",
@@ -315,7 +327,7 @@ const ALL_ARTICLES = [
   {
     "title": "诺贝尔经济学奖明日揭晓，为什么获奖者总出自那几所学校？",
     "link": "https://www.yicai.com/news/103388802.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "追踪美国高校教师招聘网络数据来看，经济学是向上流动最难的学科之一。",
     "image": "",
     "sourceId": "yicai",
@@ -326,7 +338,7 @@ const ALL_ARTICLES = [
   {
     "title": "中国农业地理｜大闸蟹价格回落，它爬出“包邮区”正去往云贵川​​​​​​​​​​​​​​",
     "link": "https://www.yicai.com/news/103388798.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "大闸蟹已突破单纯农产品销售范畴。",
     "image": "",
     "sourceId": "yicai",
@@ -337,7 +349,7 @@ const ALL_ARTICLES = [
   {
     "title": "人民币汇率被低估了吗？央行最新政策立场给出答案",
     "link": "https://www.yicai.com/news/103388325.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "部分西方经济体将中国外贸强势归因于人民币汇率被低估。央行选择此时发布政策立场，是对外部施压的正面回应，也为市场构建出一个准确、完整的人民币汇率叙事与立场。",
     "image": "",
     "sourceId": "yicai",
@@ -348,7 +360,7 @@ const ALL_ARTICLES = [
   {
     "title": "约1.8万字的中国财政政策半年报，有何看点？",
     "link": "https://www.yicai.com/news/103387928.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "今年财政政策更加积极、精准发力，加强与其他政策协同联动。",
     "image": "",
     "sourceId": "yicai",
@@ -359,7 +371,7 @@ const ALL_ARTICLES = [
   {
     "title": "通则康威：回拨后本次网上定价发行的中签率为0.0163% | 通则康威公告，回拨后，本次网上定价发行的中签率为0.0163%，有效申购倍数为6138.69倍。",
     "link": "https://www.yicai.com/brief/103388973.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "通则康威公告，回拨后，本次网上定价发行的中签率为0.0163%，有效申购倍数为6138.69倍。",
     "image": "",
     "sourceId": "yicai",
@@ -370,7 +382,7 @@ const ALL_ARTICLES = [
   {
     "title": "粤芯半导体：公司股票将于10月13日在创业板上市 | 粤芯半导体公告，公司发行的人民币普通股股票将于2026年10月13日在深交所创业板上市。",
     "link": "https://www.yicai.com/brief/103388963.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "",
     "image": "",
     "sourceId": "yicai",
@@ -381,7 +393,7 @@ const ALL_ARTICLES = [
   {
     "title": "AI进化速递丨SpaceXAI官方账号更名 | ①SpaceXAI的官方账号已更名为“SpaceX Super Intelligence”；",
     "link": "https://www.yicai.com/brief/103388955.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "",
     "image": "",
     "sourceId": "yicai",
@@ -392,7 +404,7 @@ const ALL_ARTICLES = [
   {
     "title": "王沪宁会见越南国会主席陈青敏 | 据新华社，全国政协主席王沪宁11日在京会见越南国会主席陈青敏。",
     "link": "https://www.yicai.com/brief/103388946.html",
-    "pubDate": "2026-10-11T21:26:23+08:00",
+    "pubDate": "2026-10-11T21:35:26+08:00",
     "description": "",
     "image": "",
     "sourceId": "yicai",
@@ -403,7 +415,7 @@ const ALL_ARTICLES = [
   {
     "title": "人事观察｜长期任职工人日报社 55岁河北女常委王娇萍兼任统战部长",
     "link": "https://china.caixin.com/2026-10-11/102492297.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "王娇萍是北京师范大学中文系硕士，长期在工人日报社从事新闻采编工作",
     "image": "",
     "sourceId": "caixin",
@@ -414,7 +426,7 @@ const ALL_ARTICLES = [
   {
     "title": "人事观察｜补缺倪强 黎族“70后”李锋任海南省委常委、秘书长",
     "link": "https://china.caixin.com/2026-10-11/102492293.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "李锋长期在海南基层工作，是目前最年轻的海南省委常委",
     "image": "",
     "sourceId": "caixin",
@@ -425,7 +437,7 @@ const ALL_ARTICLES = [
   {
     "title": "视线｜西班牙近50城爆发大规模抗议 住房危机积重难返首相解散国会",
     "link": "https://photos.caixin.com/2026-10-11/102492239.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "西班牙 住房 抗议",
     "image": "",
     "sourceId": "caixin",
@@ -436,7 +448,7 @@ const ALL_ARTICLES = [
   {
     "title": "防范“激进式”创新 四部门拟加强汽车研发测试管理",
     "link": "https://www.caixin.com/2026-10-11/102492233.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "征求意见稿提出，整车可靠性验证试验里程不低于3万公里，环境适应性验证周期不少于一年",
     "image": "",
     "sourceId": "caixin",
@@ -447,7 +459,7 @@ const ALL_ARTICLES = [
   {
     "title": "沙特利雅得机场遇袭致12人死309伤 中航司此前已暂停往返利雅得航班",
     "link": "https://international.caixin.com/2026-10-11/102492228.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "特朗普称，他正在评估美国是否应该加入沙特对胡塞武装的打击行动",
     "image": "",
     "sourceId": "caixin",
@@ -458,7 +470,7 @@ const ALL_ARTICLES = [
   {
     "title": "人事观察｜三年三度履新 58岁谭丕创主政南宁",
     "link": "https://china.caixin.com/2026-10-11/102492205.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "",
     "image": "",
     "sourceId": "caixin",
@@ -469,7 +481,7 @@ const ALL_ARTICLES = [
   {
     "title": "渣打银行高管：人民币国际化进入2.0阶段，商业价值加速显现",
     "link": "https://finance.caixin.com/2026-10-10/102492182.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "",
     "image": "",
     "sourceId": "caixin",
@@ -480,7 +492,7 @@ const ALL_ARTICLES = [
   {
     "title": "特朗普首次整体制裁国际刑事法院 该院院长称不会屈服",
     "link": "https://international.caixin.com/2026-10-10/102492177.html",
-    "pubDate": "2026-10-11T21:26:16+08:00",
+    "pubDate": "2026-10-11T21:35:23+08:00",
     "description": "",
     "image": "",
     "sourceId": "caixin",
@@ -1208,37 +1220,26 @@ function renderAll() {
   html += '</article></section>';
   html += '<section><div class="section-label">最新资讯 · Latest</div><div class="news-grid">';
   rest.forEach((a, idx) => {
-    const cardId = 'card-' + idx;
     const isPaywall = a.paywall === true;
     if (isPaywall) {
       // 付费媒体：点击直接跳转
       html += '<article class="news-card" onclick="window.open(\'' + a.link + '\',\'_blank\')" style="cursor:pointer;">';
     } else {
-      // 免费媒体：点击展开正文
-      html += '<article class="news-card" id="' + cardId + '" onclick="toggleExpand(\'' + cardId + '\')">';
+      // 免费媒体：点击进入独立阅读页
+      html += '<article class="news-card" onclick="openArticle(' + idx + ')" style="cursor:pointer;">';
     }
     html += '<div class="card-source">' + a.sourceName;
     if (isPaywall) html += '<span class="paywall-badge">付费</span>';
     html += '</div>';
     if (isPaywall) {
-      // 付费媒体：标题是链接，点击跳转
       html += '<h3><a href="' + a.link + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + escapeHtml(a.title) + '</a></h3>';
     } else {
-      // 免费媒体：标题不是链接，点击卡片展开
-      html += '<h3 style="cursor:pointer;">' + escapeHtml(a.title) + '</h3>';
+      html += '<h3>' + escapeHtml(a.title) + '</h3>';
     }
     if (a.description) html += '<p class="card-desc">' + escapeHtml(a.description) + '</p>';
     html += '<div class="card-time">' + formatTime(a.pubDate) + '</div>';
     if (!isPaywall) {
-      html += '<div class="expand-hint">点击展开阅读全文 ↓</div>';
-      html += '<div class="card-detail">';
-      if (a.description) {
-        html += '<p>' + escapeHtml(a.description) + '</p>';
-      } else {
-        html += '<p style="color:var(--ink-muted);">该新闻暂无摘要，点击下方链接阅读原文。</p>';
-      }
-      html += '<a class="read-original" href="' + a.link + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">阅读原文 →</a>';
-      html += '</div>';
+      html += '<div class="read-hint">点击阅读全文 →</div>';
     }
     html += '</article>';
   });
@@ -1246,9 +1247,31 @@ function renderAll() {
   main.innerHTML = html;
 }
 
-function toggleExpand(cardId) {
-  const card = document.getElementById(cardId);
-  if (card) card.classList.toggle('expanded');
+function openArticle(idx) {
+  const articles = getFilteredArticles();
+  const a = articles[idx + 1]; // +1 因为第一条是featured
+  if (!a) return;
+  const view = document.getElementById('readingView');
+  let contentHtml = '<button class="back-btn" onclick="closeArticle()">← 返回列表</button>';
+  contentHtml += '<div class="reading-meta"><span class="source-badge">' + a.sourceName + '</span><span>' + formatTime(a.pubDate) + '</span></div>';
+  contentHtml += '<h1 class="reading-title">' + escapeHtml(a.title) + '</h1>';
+  contentHtml += '<div class="reading-content">';
+  if (a.description) {
+    contentHtml += '<p>' + escapeHtml(a.description) + '</p>';
+  } else {
+    contentHtml += '<p class="no-desc">该新闻暂无摘抄摘要，您可以点击下方链接阅读原文。</p>';
+  }
+  contentHtml += '</div>';
+  contentHtml += '<a class="read-original" href="' + a.link + '" target="_blank" rel="noopener">阅读原文 →</a>';
+  view.innerHTML = contentHtml;
+  document.getElementById('mainContent').style.display = 'none';
+  view.style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function closeArticle() {
+  document.getElementById('readingView').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
 }
 
 function setSource(id) { activeSource = id; renderAll(); }
