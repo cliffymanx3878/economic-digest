@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全球经济日报 · Global Economic Digest</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231B365D'/><text x='50' y='68' font-size='52' font-family='serif' fill='%23FAFAF8' text-anchor='middle' font-weight='bold'>E</text></svg>">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root {
+  --bg: #FAFAF8; --bg-card: #FFFFFF; --ink: #1A1A1A; --ink-soft: #4A4A4A;
+  --ink-muted: #8A8A8A; --line: #E5E5E0; --line-soft: #EFEFEC;
+  --accent: #1B365D; --accent-light: #2C5282; --accent-bg: #F0F4F8;
+  --serif: 'Noto Serif SC', 'Songti SC', 'SimSun', Georgia, serif;
+  --sans: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --maxw: 1200px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 15px; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.masthead { border-bottom: 2px solid var(--ink); padding: 28px 24px 20px; text-align: center; }
+.masthead-inner { max-width: var(--maxw); margin: 0 auto; }
+.masthead-title { font-family: var(--serif); font-size: clamp(28px, 5vw, 44px); font-weight: 900; letter-spacing: 0.04em; line-height: 1.2; }
+.masthead-sub { font-family: var(--serif); font-size: 13px; color: var(--ink-muted); letter-spacing: 0.15em; margin-top: 6px; text-transform: uppercase; }
+.masthead-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+.masthead-date { font-family: var(--serif); font-weight: 600; }
+
+.filter-bar { border-bottom: 1px solid var(--line); padding: 14px 24px; background: var(--bg); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); }
+.filter-inner { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.source-tags { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+.source-tag { padding: 5px 12px; font-size: 12px; font-weight: 500; border: 1px solid var(--line); border-radius: 2px; color: var(--ink-soft); transition: all 0.15s; background: var(--bg-card); white-space: nowrap; }
+.source-tag:hover { border-color: var(--accent); color: var(--accent); }
+.source-tag.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.search-box { position: relative; flex-shrink: 0; }
+.search-box input { width: 200px; padding: 7px 12px 7px 34px; border: 1px solid var(--line); border-radius: 2px; font-size: 13px; font-family: var(--sans); background: var(--bg-card); color: var(--ink); outline: none; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--ink-muted); }
+
+.main { max-width: var(--maxw); margin: 0 auto; padding: 32px 24px 60px; }
+.section-label { font-family: var(--serif); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.featured-section { margin-bottom: 36px; }
+.featured-card { display: grid; grid-template-columns: 1fr; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+@media (min-width: 768px) { .featured-card { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+.featured-content h2 { font-family: var(--serif); font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.35; margin-bottom: 12px; }
+.featured-content h2 a:hover { color: var(--accent); }
+.featured-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--ink-muted); margin-bottom: 14px; }
+.featured-meta .source-badge { font-weight: 700; color: var(--accent); font-family: var(--serif); }
+.featured-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.8; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.featured-image { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 2px; background: var(--line-soft); }
+
+.news-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 600px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+.news-card { padding: 24px 20px; border-bottom: 1px solid var(--line-soft); transition: background 0.15s; cursor: pointer; }
+@media (min-width: 600px) { .news-card { border-right: 1px solid var(--line-soft); } .news-card:nth-child(2n) { border-right: none; } }
+@media (min-width: 900px) { .news-card:nth-child(2n) { border-right: 1px solid var(--line-soft); } .news-card:nth-child(3n) { border-right: none; } }
+.news-card:hover { background: var(--accent-bg); }
+.news-card .card-source { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; font-family: var(--serif); }
+.news-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.45; margin-bottom: 10px; }
+.news-card h3 a:hover { color: var(--accent); }
+.news-card .card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; }
+.news-card .card-time { font-size: 12px; color: var(--ink-muted); }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--ink-muted); }
+.footer { border-top: 2px solid var(--ink); padding: 28px 24px; text-align: center; font-size: 12px; color: var(--ink-muted); }
+.footer p { margin-bottom: 4px; }
+
+@media (max-width: 600px) {
+  .masthead { padding: 20px 16px 16px; }
+  .masthead-meta { flex-direction: column; gap: 10px; }
+  .filter-bar { padding: 10px 16px; }
+  .search-box input { width: 100%; font-size: 16px; }
+  .search-box { width: 100%; order: -1; }
+  .main { padding: 20px 16px 40px; }
+  .news-card { padding: 20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 class="masthead-title">全球经济日报</h1>
+    <p class="masthead-sub">Global Economic Daily Digest</p>
+    <div class="masthead-meta">
+      <span class="masthead-date">2026年10月11日 · 星期六</span>
+      <span style="font-size:12px;color:var(--ink-muted);">云端自动更新 · 2026-10-11 17:24</span>
+    </div>
+  </div>
+</header>
+
+<nav class="filter-bar">
+  <div class="filter-inner">
+    <div class="source-tags" id="sourceTags">
+      <button class="source-tag active" onclick="setSource('all')">全部</button>
+      <button class="source-tag" onclick="setSource('reuters')">Reuters</button>
+<button class="source-tag" onclick="setSource('ft')">Financial Times</button>
+<button class="source-tag" onclick="setSource('economist')">The Economist</button>
+<button class="source-tag" onclick="setSource('nyt')">NYT Business</button>
+<button class="source-tag" onclick="setSource('bbc')">BBC Business</button>
+<button class="source-tag" onclick="setSource('cnbc')">CNBC</button>
+<button class="source-tag" onclick="setSource('npr')">NPR Business</button>
+<button class="source-tag" onclick="setSource('caixin')">财新网</button>
+<button class="source-tag" onclick="setSource('yicai')">第一财经</button>
+<button class="source-tag" onclick="setSource('stcn')">证券时报</button>
+<button class="source-tag" onclick="setSource('cls')">财联社</button>
+
+    </div>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchInput" placeholder="搜索新闻关键词..." oninput="handleSearch(this.value)">
+    </div>
+  </div>
+</nav>
+
+<main class="main" id="mainContent"></main>
+
+<footer class="footer">
+  <p>国际来源：Reuters · Financial Times · The Economist · NYT Business · BBC Business · CNBC · NPR</p>
+  <p>国内来源：财新网 · 第一财经 · 证券时报 · 财联社</p>
+  <p style="margin-top:8px;">由 GitHub Actions 每日云端自动更新 · 内容版权归原媒体所有</p>
+</footer>
+
+<script>
+const ALL_ARTICLES = [
+  {
+    "title": "周末要闻汇总：事关人工智能等，国务院发布重磅文件",
+    "link": "https://www.cls.cn/detail/2501472",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "沙特利雅得机场遭袭致12死309伤 美总统：美军可能下场",
+    "link": "https://www.cls.cn/detail/2501417",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "尚无中国公民伤亡报告 中国驻沙特大使馆公布应急电话",
+    "link": "https://www.cls.cn/detail/2501400",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "人民日报：一辆汽车的刹车踏板，绝不应该在驾驶中出现“断裂”",
+    "link": "https://www.cls.cn/detail/2501423",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "中汽协：摒弃重形式、轻安全的非理性创新模式",
+    "link": "https://www.cls.cn/detail/2501407",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "中央汇金“打假”：公司不开展代客投资理财活动",
+    "link": "https://www.cls.cn/detail/2501446",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "现场画面：尼泊尔再次暴发严重山洪，房屋、桥梁被冲毁",
+    "link": "https://www.cls.cn/detail/2501513",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "明天重磅打新，“航天线缆第一股”来了",
+    "link": "https://www.cls.cn/detail/2501470",
+    "pubDate": "2026-10-11T17:24:30+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社"
+  },
+  {
+    "title": "PCB股广合科技、景旺电子业绩大增！南向资金爆买两只互联网龙头",
+    "link": "https://www.stcn.com/article/detail/4211334.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "优先股票配置！券商资管四季度最新策略",
+    "link": "https://www.stcn.com/article/detail/4211291.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "超话车｜四部门联手，对“速成车”说不！",
+    "link": "https://www.stcn.com/article/detail/4211283.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "连续高股息+高ROE的稳健增长股，23股上榜，耐心资本长线配置（附名单）",
+    "link": "https://www.stcn.com/article/detail/4211258.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "吴清发声！中国证监会召开资本市场和金融形势专家座谈会",
+    "link": "https://www.stcn.com/article/detail/4211184.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "突发！哈药股份董事兼总裁被立案、实施留置",
+    "link": "https://www.stcn.com/article/detail/4211400.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "认购需求强于市场预期，美债市场企稳？",
+    "link": "https://www.stcn.com/article/detail/4211365.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "加息大消息！美联储，重磅来袭！",
+    "link": "https://www.stcn.com/article/detail/4211352.html",
+    "pubDate": "2026-10-11T17:24:29+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报"
+  },
+  {
+    "title": "Promotion",
+    "link": "https://promote.caixin.com/",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "网上有害信息举报专区",
+    "link": "https://www.12377.cn/",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "数据通Claw🦞",
+    "link": "https://cxdata.caixin.com/nexus/#/CaixindataClaw?source=caixinweb",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "视线｜西班牙近50城爆发大规模抗议 住房危机积重难返首相解散国会",
+    "link": "https://photos.caixin.com/2026-10-11/102492239.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "防范“激进式”创新 四部门拟加强汽车研发测试管理",
+    "link": "https://www.caixin.com/2026-10-11/102492233.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "沙特利雅得机场遇袭致12人死309伤 中航司此前已暂停往返利雅得航班",
+    "link": "https://international.caixin.com/2026-10-11/102492228.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "人事观察｜三年三度履新 58岁谭丕创主政南宁",
+    "link": "https://china.caixin.com/2026-10-11/102492205.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "渣打银行高管：人民币国际化进入2.0阶段，商业价值加速显现",
+    "link": "https://finance.caixin.com/2026-10-10/102492182.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网"
+  },
+  {
+    "title": "诺贝尔经济学奖明日揭晓，为什么获奖者总出自那几所学校？",
+    "link": "https://www.yicai.com/news/103388802.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "中国农业地理｜大闸蟹价格回落，它爬出“包邮区”正去往云贵川​​​​​​​​​​​​​​",
+    "link": "https://www.yicai.com/news/103388798.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "人民币汇率被低估了吗？央行最新政策立场给出答案",
+    "link": "https://www.yicai.com/news/103388325.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "约1.8万字的中国财政政策半年报，有何看点？",
+    "link": "https://www.yicai.com/news/103387928.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "尼泊尔中北部发生洪水 | 据新华社，尼泊尔警方消息，该国中北部地区11日发生洪水，有房屋和桥梁被冲毁，部分地区居民已被疏散。目前尚不清楚有无人员伤亡。",
+    "link": "https://www.yicai.com/brief/103388881.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "沙特称防空拦截弹库存不足 | 据新华社，美联社11日报道，多名沙特阿拉伯官员近期称，沙特防空拦截弹库存已“告急”。",
+    "link": "https://www.yicai.com/brief/103388865.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "关于开设“涉企侵权投诉举报专区”的公告",
+    "link": "https://www.yicai.com/news/102062384.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "第一财经网络举报受理和处置规则",
+    "link": "https://www.yicai.com/news/102944648.html",
+    "pubDate": "2026-10-11T17:24:28+08:00",
+    "description": "",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经"
+  },
+  {
+    "title": "From BJ’s to Lululemon, retailers are trimming assortments to boost business",
+    "link": "https://www.cnbc.com/2026/10/10/from-bjs-to-lululemon-retailers-are-trimming-assortments.html",
+    "pubDate": "Sat, 10 Oct 2026 12:00:01 GMT",
+    "description": "Retail brands are shrinking assortments to get back to healthy growth, while box stores are culling products to better curate offerings and stabilize business.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Delta CEO: 'Safety is going to make the call' on launching Saudi Arabia flight",
+    "link": "https://www.cnbc.com/2026/10/09/delta-riyadh-flight-safety-houthi-attacks.html",
+    "pubDate": "Fri, 09 Oct 2026 11:57:05 GMT",
+    "description": "Delta is weighing whether to continue with its Riyadh, Saudi Arabia flight debut as planned.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Delta Air Lines cuts 2026 forecast on fuel surge, but CEO says demand is still strong",
+    "link": "https://www.cnbc.com/2026/10/09/delta-air-lines-dal-q3-2026-earnings.html",
+    "pubDate": "Fri, 09 Oct 2026 15:07:46 GMT",
+    "description": "Delta Air Lines reported third-quarter earnings and missed Wall Street estimates for the first time in two years.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Why a Starbucks takeover of Chipotle would — and wouldn't — make sense for both companies",
+    "link": "https://www.cnbc.com/2026/10/08/starbucks-chipotle-acquisition.html",
+    "pubDate": "Thu, 08 Oct 2026 20:12:33 GMT",
+    "description": "Starbucks has reportedly been working with advisers on a takeover proposal for Chipotle, but a potential deal comes with pros and cons for investors.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Skydance's David Ellison tells CNBC combined company is 'positioned to win in every single vertical'",
+    "link": "https://www.cnbc.com/2026/10/08/skydance-co-ceos-ellison-kreiz.html",
+    "pubDate": "Thu, 08 Oct 2026 16:25:40 GMT",
+    "description": "Skydance includes two film studios, the CBS broadcast network, a sprawling pay TV portfolio and streaming services Paramount+ and HBO Max.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "PepsiCo cuts earnings forecast as North American turnaround takes longer than expected",
+    "link": "https://www.cnbc.com/2026/10/08/pepsico-pep-q3-2026-earnings.html",
+    "pubDate": "Thu, 08 Oct 2026 14:43:05 GMT",
+    "description": "Pepsi's North American business continues to lag behind its international markets.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Lululemon poaches Athleta CEO as new chief product officer",
+    "link": "https://www.cnbc.com/2026/10/07/lululemon-athleta-ceo-maggie-gauger-chief-product-officer.html",
+    "pubDate": "Wed, 07 Oct 2026 21:47:06 GMT",
+    "description": "Lululemon announced Wednesday that Athleta CEO Maggie Gauger is joining the company as its chief product officer, a newly created role.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Levi Strauss hikes profit guidance after tariff refunds, but its sales outlook is less optimistic",
+    "link": "https://www.cnbc.com/2026/10/07/levi-strauss-levi-q3-2026-earnings.html",
+    "pubDate": "Thu, 08 Oct 2026 14:43:38 GMT",
+    "description": "Levi Strauss on Wednesday posted earnings that beat expectations, though it saw benefits from tariff refunds.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Modelo owner Constellation is getting creative to bring back beer drinkers as overall demand weakens",
+    "link": "https://www.cnbc.com/2026/10/07/constellation-brands-earnings-beer-demand.html",
+    "pubDate": "Wed, 07 Oct 2026 19:14:03 GMT",
+    "description": "Constellation Brands beat earnings and revenue expectations as beer brands gained share, while inventory rebuilding and consumer caution clouded demand.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "Disney+ to stream upcoming Super Bowl",
+    "link": "https://www.cnbc.com/2026/10/07/disney-stream-super-bowl-2027.html",
+    "pubDate": "Wed, 07 Oct 2026 16:36:26 GMT",
+    "description": "Disney+ will also air two Monday Night Football games leading up to the championship game.",
+    "image": "",
+    "sourceId": "cnbc",
+    "sourceName": "CNBC",
+    "sourceFull": "CNBC 财经"
+  },
+  {
+    "title": "It's taking longer to find a new job after losing one",
+    "link": "https://www.npr.org/2026/10/11/nx-s1-5995238/jobs-employment-economy-unemployment-benefits",
+    "pubDate": "Sun, 11 Oct 2026 05:00:00 -0400",
+    "description": "People who lose their jobs in this economy are taking longer to find new work. Nearly four in ten people exhaust their unemployment benefits before they land a new job.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "Kalshi taps former FBI agent to fight against money laundering",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5996683/kalshi-fbi-sean-fern-money-laundering",
+    "pubDate": "Fri, 09 Oct 2026 18:23:11 -0400",
+    "description": "The prediction market company says it wants to prevent its platform from being abused by criminals. The company is facing mounting pressure over market manipulation and insider trading on the site.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "Fired OpenAI employees question the company's commitment to safety",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5996890/openai-safety-firings",
+    "pubDate": "Fri, 09 Oct 2026 17:28:09 -0400",
+    "description": "The three fired workers say OpenAI punished them for being outspoken about safety. The company disputes the claims and says they were fired over mishandling sensitive information.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "How the beverage aisle got so wild",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5991779/how-the-beverage-aisle-got-so-wild",
+    "pubDate": "Fri, 09 Oct 2026 16:38:42 -0400",
+    "description": "Planet Money traced many new beverage flavors to one laboratory that serves dozens of companies to see how new flavors are created and why we're seeing such an explosion of options right now.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "Despite the controversy, data centers could be attractive to struggling rural towns",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5966615/despite-the-controversy-data-centers-could-be-attractive-to-struggling-rural-towns",
+    "pubDate": "Fri, 09 Oct 2026 16:03:15 -0400",
+    "description": "There's lots of debate over data centers and where they should be located. In a struggling rural town data center development can look a lot more attractive.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "How the oil industry is preparing for Hurricane Isaias",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5995417/hurricane-isaias-oil-refineries-diesel-gasoline-prices",
+    "pubDate": "Fri, 09 Oct 2026 12:03:32 -0400",
+    "description": "Hurricane Isaias is this season's first Atlantic hurricane, and is on a path to hit the northern Gulf Coast. How is the oil industry preparing?",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "Why American investors love European defense startups",
+    "link": "https://www.npr.org/sections/planet-money/2026/10/09/nx-s1-5995606/why-american-investors-love-european-defense-startups",
+    "pubDate": "Fri, 09 Oct 2026 07:00:00 -0400",
+    "description": "As European defense spending takes off, just about half of the funding in Europe's defense tech industry is coming from American investors this year. One reason why: European investment firms have res...",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "OpenAI caught Russians and Iranians using ChatGPT for influence campaigns",
+    "link": "https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt",
+    "pubDate": "Thu, 08 Oct 2026 20:25:15 -0400",
+    "description": "The company says Russian operatives used its AI chatbot to update their bosses, shedding light on influence campaigns previously not attributed to Russia.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "As crypto and prediction markets expand, their regulator shrinks",
+    "link": "https://www.npr.org/2026/10/08/nx-s1-5903204/crypto-prediction-markets-cftc-weakens",
+    "pubDate": "Thu, 08 Oct 2026 05:00:00 -0400",
+    "description": "Even as the agency is tasked with drawing up new rules for crypto and prediction markets, its staffing and enforcement actions have dropped precipitously during the second Trump administration.",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  },
+  {
+    "title": "Why Trump just loosened the rules on 'dyed diesel' — normally a farm fuel",
+    "link": "https://www.npr.org/2026/10/07/nx-s1-5992963/dyed-diesel-fuel-price-farmers-trucks",
+    "pubDate": "Wed, 07 Oct 2026 14:00:31 -0400",
+    "description": "Trump is temporarily allowing this fuel to be used on highways, although it's typically just for off-road farm and construction vehicles. Could that lower the price of diesel?",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业"
+  }
+];
+let activeSource = 'all';
+let searchKeyword = '';
+
+function formatTime(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return '';
+  const now = new Date();
+  const diff = (now - d) / 1000;
+  if (diff < 60) return '刚刚';
+  if (diff < 3600) return Math.floor(diff/60) + '分钟前';
+  if (diff < 86400) return Math.floor(diff/3600) + '小时前';
+  return (d.getMonth()+1) + '/' + d.getDate();
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderSourceTags() {
+  const container = document.getElementById('sourceTags');
+  const allTag = '<button class="source-tag ' + (activeSource==='all'?'active':'') + '" onclick="setSource(\'all\')">全部</button>';
+  const sources = [{"id": "reuters", "name": "Reuters"}, {"id": "ft", "name": "Financial Times"}, {"id": "economist", "name": "The Economist"}, {"id": "nyt", "name": "NYT Business"}, {"id": "bbc", "name": "BBC Business"}, {"id": "cnbc", "name": "CNBC"}, {"id": "npr", "name": "NPR Business"}, {"id": "caixin", "name": "财新网"}, {"id": "yicai", "name": "第一财经"}, {"id": "stcn", "name": "证券时报"}, {"id": "cls", "name": "财联社"}];
+  const tags = sources.map(s => '<button class="source-tag ' + (activeSource===s.id?'active':'') + '" onclick="setSource(\'' + s.id + '\')">' + s.name + '</button>').join('');
+  container.innerHTML = allTag + tags;
+}
+
+function getFilteredArticles() {
+  let list = ALL_ARTICLES;
+  if (activeSource !== 'all') list = list.filter(a => a.sourceId === activeSource);
+  if (searchKeyword) {
+    const kw = searchKeyword.toLowerCase();
+    list = list.filter(a => a.title.toLowerCase().includes(kw) || (a.description||'').toLowerCase().includes(kw));
+  }
+  return list;
+}
+
+function renderAll() {
+  renderSourceTags();
+  const articles = getFilteredArticles();
+  const main = document.getElementById('mainContent');
+  if (articles.length === 0) {
+    main.innerHTML = '<div class="empty-state"><p>没有找到匹配的新闻</p></div>';
+    return;
+  }
+  const featured = articles[0];
+  const rest = articles.slice(1);
+  let html = '<section class="featured-section"><div class="section-label">今日头条 · Top Story</div><article class="featured-card"><div class="featured-content">';
+  html += '<h2><a href="' + featured.link + '" target="_blank" rel="noopener">' + escapeHtml(featured.title) + '</a></h2>';
+  html += '<div class="featured-meta"><span class="source-badge">' + featured.sourceName + '</span><span>' + formatTime(featured.pubDate) + '</span></div>';
+  if (featured.description) html += '<p class="featured-desc">' + escapeHtml(featured.description) + '</p>';
+  html += '</div>';
+  if (featured.image) html += '<img class="featured-image" src="' + featured.image + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+  html += '</article></section>';
+  html += '<section><div class="section-label">最新资讯 · Latest</div><div class="news-grid">';
+  rest.forEach(a => {
+    html += '<article class="news-card" onclick="window.open(\'' + a.link + '\',\'_blank\')">';
+    html += '<div class="card-source">' + a.sourceName + '</div>';
+    html += '<h3><a href="' + a.link + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + escapeHtml(a.title) + '</a></h3>';
+    if (a.description) html += '<p class="card-desc">' + escapeHtml(a.description) + '</p>';
+    html += '<div class="card-time">' + formatTime(a.pubDate) + '</div></article>';
+  });
+  html += '</div></section>';
+  main.innerHTML = html;
+}
+
+function setSource(id) { activeSource = id; renderAll(); }
+function handleSearch(val) { searchKeyword = val.trim(); renderAll(); }
+renderAll();
+</script>
+</body>
+</html>
