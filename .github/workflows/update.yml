@@ -1,9 +1,9 @@
-name: 每日更新经济日报
+name: 定时更新经济日报
 
 on:
   schedule:
-    # 北京时间每天 07:15 (UTC 23:15 前一天)
-    - cron: '15 23 * * *'
+    # 每小时更新一次：UTC 每小时12分 = 北京时间每小时12分（错开整点高峰，减少排队延迟）
+    - cron: '12 * * * *'
   # 支持手动触发
   workflow_dispatch:
 
@@ -34,6 +34,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add index.html articles/
-          git diff --staged --quiet || git commit -m "每日新闻更新 $(date +'%Y-%m-%d')"
+          git add index.html articles/ update.json
+          git diff --staged --quiet || git commit -m "新闻更新 $(date +'%Y-%m-%d %H:%M')"
           git push
