@@ -83,6 +83,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .reading-view .reading-content p { margin-bottom: 18px; }
 .reading-view .no-desc { color: var(--ink-muted); font-style: italic; }
 
+.update-banner { display: none; background: var(--accent); color: #fff; text-align: center; padding: 11px 16px; font-size: 14px; cursor: pointer; letter-spacing: 0.5px; position: sticky; top: 0; z-index: 200; }
+.update-banner.show { display: block; }
+.update-banner:hover { background: var(--accent-light); }
+
 .empty-state { text-align: center; padding: 60px 20px; color: var(--ink-muted); }
 .footer { border-top: 2px solid var(--ink); padding: 28px 24px; text-align: center; font-size: 12px; color: var(--ink-muted); }
 .footer p { margin-bottom: 4px; }
@@ -103,13 +107,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </head>
 <body>
 
+<div id="updateBanner" class="update-banner" onclick="location.reload()">
+  <span>有新的财经资讯，点击刷新</span>
+</div>
+
 <header class="masthead">
   <div class="masthead-inner">
     <h1 class="masthead-title">全球经济日报</h1>
     <p class="masthead-sub">Global Economic Daily Digest</p>
     <div class="masthead-meta">
       <span class="masthead-date">2026年10月12日 · 星期日</span>
-      <span style="font-size:12px;color:var(--ink-muted);">云端自动更新 · 2026-10-12 07:28</span>
+      <span style="font-size:12px;color:var(--ink-muted);">云端自动更新 · 2026-10-12 18:28</span>
     </div>
   </div>
 </header>
@@ -145,28 +153,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <footer class="footer">
   <p>国际来源：Reuters · Financial Times · The Economist · NYT Business · BBC Business · CNBC · NPR</p>
   <p>国内来源：财新网 · 第一财经 · 证券时报 · 财联社</p>
-  <p style="margin-top:8px;">由 GitHub Actions 每日云端自动更新 · 内容版权归原媒体所有</p>
+  <p style="margin-top:8px;">由 GitHub Actions 每小时云端自动更新 · 内容版权归原媒体所有</p>
 </footer>
 
 <script>
 const ALL_ARTICLES = [
   {
-    "title": "周末要闻汇总：事关人工智能等，国务院发布重磅文件",
-    "link": "https://www.cls.cn/detail/2501472",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "财联社10月11日讯，周末影响市场的重要资讯有：①中共中央、国务院：全面实施“人工智能+”行动，强化算力、算法、数据等高效供给；②证监会召开资本市场和金融形势专家座谈会，听取意见建议；③沙特首都遭袭致12死309伤，美或将介入打击行动；④景旺电子：第三季度净利润同比预增205%-265%。\n\n中共中...",
-    "image": "",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
-    "paywall": false,
+    "title": "能源内参｜3C证书大面积暂停 国内电动自行车销售接近停滞；美联储加息预期之下，谁还在买入黄金？",
+    "link": "https://www.caixin.com/2026-10-12/102492402.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "美联储加息预期之下，谁还在买入黄金？\n\n财新网10月12日报道，国际金价在8月快速拉升后，又在9月快速回落。本轮金价波动最大边际原因，显然是美联储政策转向。4000美元每盎司的高金价已经打压了黄金首饰的需求；而美联储的加息行动，带动美国实际汇率和美元走高，又势必压制投资需求。现货金价在8月25日触及...",
+    "image": "https://img.caixin.com/2026-10-12/179177090070158_560_373.jpg",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网",
+    "paywall": true,
     "articleId": "a0"
   },
   {
-    "title": "人民币汇率被低估了吗？央行最新政策立场给出答案",
-    "link": "https://www.yicai.com/news/103388325.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "第一财经 2026-10-09 22:09:33 听新闻\n\n中国人民银行日前重磅发布关于人民币汇率的政策立场，一时间引发市场广泛关注。\n\n2025年以来，人民币对美元汇率累计升值约9%。在此背景下，央行这一表态令市场困惑：汇率明明在走强，为何此时高调回应“低估”质疑？\n\n答案在外围。一段时间以来，部...",
+    "title": "沙特遭遇十年来最惨袭击：胡塞难缠，沙特航空梦受挫",
+    "link": "https://www.yicai.com/news/103388972.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2026-10-11 21:22:24 听新闻\n\n位于沙特首都利雅得的哈立德国王国际机场，在短短4天之内，已经至少遭受了4次致命袭击，如今已陷入彻底停摆。\n\n沙特民航总局11日凌晨发表声明说，哈立德国王国际机场10日遭袭击，已造成12人死亡、309人受伤。这是沙特近11年来伤亡最惨重的一次...",
     "image": "",
     "sourceId": "yicai",
     "sourceName": "第一财经",
@@ -175,203 +183,203 @@ const ALL_ARTICLES = [
     "articleId": "a1"
   },
   {
-    "title": "【早报】特朗普：俄乌同意“能源停火”",
-    "link": "https://www.cls.cn/detail/2501666",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "1、国家发展改革委主任郑栅洁10日主持召开民营企业座谈会，郑栅洁表示，四季度是全年收官之季，也是巩固经济回升向好的关键窗口期，国家发展改革委将认真贯彻落实党中央和国务院决策部署，加大逆周期调节力度，加强宏观政策取向一致性评估，强化存量政策和增量政策协同发力；推动“十五五”规划、“六张网”建设实施方案...",
-    "image": "https://image.cls.cn/images/20261012/0T69875Bdn_1005x264.png",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
+    "title": "四大动作，四种路径：中国汽车整合大幕拉开",
+    "link": "https://www.yicai.com/news/103389854.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2026-10-12 15:07:33 听新闻\n\n一边是多桩资本交易密集落地，一边是行业利润率滑到3.6%。在这一大背景下，中国车企近期密集落地了一系列整合动作。\n\n一汽入股零跑落定，南北丰田开始中方整合，深蓝与阿维塔在长安内部推进“中后台合一”，蔚来和吉利实现充换电资产交叉持股。四桩交易...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
     "paywall": false,
     "articleId": "a2"
   },
   {
-    "title": "财经早知道｜事关人工智能等新质生产力，国务院发布重磅文件",
-    "link": "https://finance.caixin.com/2026-10-12/102492356.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "中共中央、国务院印发《关于发展新质生产力的意见》 部署19项重点举措，涉及大力推进科技创新、推动科技创新和产业创新深度融合、着力推进发展方式创新、扎实推进体制机制创新、深化人才工作机制创新5个方面。\n\n证监会主席吴清主持召开资本市场和金融形势专家座谈会。与会专家建议，加强稳市机制建设、发展壮大耐心资...",
+    "title": "证监会：深化改革创新 推动北交所、新三板一体化高质量发展",
+    "link": "https://www.stcn.com/article/detail/4212650.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "10月12日，在2026金融街论坛年会新闻发布会上，证监会办公厅副主任王利表示，证监会将立足多层次资本市场建设整体格局，推动北交所、新三板一体化高质量发展，探索更加适配创新型中小企业的制度和实践，深化改革创新，丰富产品体系，强化功能发挥，更好助力金融强国建设和经济高质量发展。\n\n王利介绍，证监会扎实...",
     "image": "",
-    "sourceId": "caixin",
-    "sourceName": "财新网",
-    "sourceFull": "财新网",
-    "paywall": true,
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报",
+    "paywall": false,
     "articleId": "a3"
   },
   {
-    "title": "法国之后轮到意大利？高盛警示该国债务风险升温",
-    "link": "https://www.cls.cn/detail/2501617",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "财联社10月11日讯（编辑 赵昊）近几周，法国债务动荡使欧洲各国面临的财政压力成为市场焦点。如今，投资者的注意力正迅速转向意大利。\n\n高盛分析师表示，意大利政府将于下周提交预算案，纳入近期批准的国防和能源支出安排。这些措施预计将导致意大利未来两年的财政赤字扩大，并使其债务与国内生产总值（GDP）之比...",
-    "image": "https://image.cls.cn/images/20261011/puyD04dJJV_893x230.png",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
+    "title": "多所高校大手笔建宿舍",
+    "link": "https://www.yicai.com/news/103390183.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2026-10-12 17:37:20 听新闻\n\n近年来，随着高校的扩招，学生住宿紧张问题凸显。多所高校通过加快新建宿舍，以缓解住宿压力。\n\n据北京市公共资源综合交易系统公布的信息，清华大学为昌平南口学生宿舍及公共配套项目的方案设计及施工图设计进行招标，总建筑面积115640平方米，估算投...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
     "paywall": false,
     "articleId": "a4"
   },
   {
-    "title": "公募《运作办法》迎“大修” 十大看点勾勒改革新图景",
-    "link": "https://www.stcn.com/article/detail/4211515.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "编者按：制度之变，锚定发展之向。公募基金行业正从规模扩张迈向高质量发展，产品创新与规范运作、投资效率与持有人保护、如何实现更好平衡成为行业转型的重要命题。近日，《公开募集证券投资基金运作管理办法（征求意见稿）》发布，既为行业发展拓展空间，也对基金管理人的专业能力、治理水平和受托责任提出更高要求。从产...",
-    "image": "https://epaper.stcn.com/pic/202610/12/b1bd8a3b-277c-4011-b842-16d7c2ffd5d4.jpg",
-    "sourceId": "stcn",
-    "sourceName": "证券时报",
-    "sourceFull": "证券时报",
+    "title": "普洛斯算力中心引入浙江国资战略股东",
+    "link": "https://www.yicai.com/news/102794012.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2025-08-26 16:09:37 听新闻\n\n近日，普洛斯中国与浙江省衢州市国资合作伙伴签订战略合作协议。衢州市国资委全资控股企业衢州工业控股集团将向普洛斯算力中心投资25亿元，成为该业务战略股东。普洛斯计划在衢州设立境内控股平台公司实施普洛斯算力中心控股平台总部项目，还将与衢州在国际...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
     "paywall": false,
     "articleId": "a5"
   },
   {
-    "title": "项目荒叠加薪酬改革 保代人数跌破8000人",
-    "link": "https://www.stcn.com/article/detail/4211538.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "保荐代表人（简称“保代”），这个曾经被视为投行“金饭碗”的职业，正经历着持续的减员。最新数据显示，保代人数已跌破8000人关口，回到2023年水平。\n\n“大幕只是刚刚开始，现在保代严重过剩。”某中小券商一名投行人士向证券时报记者表示。\n\n“项目荒”是明摆着的现实。目前，“头部通吃”现象仍在加剧，近一...",
-    "image": "https://epaper.stcn.com/pic/202610/12/813981d9-e937-4aff-81ee-407fcb907967.jpg",
-    "sourceId": "stcn",
-    "sourceName": "证券时报",
-    "sourceFull": "证券时报",
+    "title": "江水边的创新土壤",
+    "link": "https://www.yicai.com/news/102997655.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "星船知造 2026-01-11 09:15:21 听新闻\n\n每当新技术浪潮来临，人们对前沿城市的期待，往往执着于先找到一座高耸的珠峰。\n\n比如勇立潮头的上海，什么时候会跑出属于智能化时代的巨头呢？\n\n这个问题，看的是一座孤峰的高度。但其实今天的上海，交出的是一份不断拔高整条山脉海拔的答卷。\n\n上海超...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
     "paywall": false,
     "articleId": "a6"
   },
   {
-    "title": "车企激进式创新，刹车！",
-    "link": "https://www.yicai.com/news/103388982.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "第一财经 2026-10-11 21:36:49 听新闻\n\n“最严汽车创新管控”新规距离正式落地又进一步。\n\n10月10日，工信部、公安部、生态环境部、市场监管总局联合发布《关于进一步加强汽车产品创新设计和研发测试验证有关管理工作的通知（征求意见稿）》（下称“征求意见稿”），为汽车产品创新划定验证规...",
-    "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
+    "title": "财政部、税务总局：自明年4月1日起 下调新能源汽车的增值税出口退税率",
+    "link": "https://www.stcn.com/article/detail/4212827.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "人民财讯10月12日电，财政部、税务总局就调整部分产品出口退税政策有关事项发布公告，一、自2027年4月1日起，将新能源汽车的增值税出口退税率由13%下调至9%。二、自2027年4月1日起，取消电子烟设备装置等产品增值税出口退税。 三、对上述产品中征收消费税的产品，出口消费税政策不作调整，继续适用消...",
+    "image": "https://static-web.stcn.com/static/images/zqsb.png",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报",
     "paywall": false,
     "articleId": "a7"
   },
   {
-    "title": "特朗普：俄乌双方同意“能源停火” | 据新华社，美国总统特朗普11日在社交媒体发文称，即刻起，俄乌冲突进入“能源停火”状态，双方均已同意。",
-    "link": "https://www.yicai.com/brief/103389008.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "22:24【特朗普：俄乌双方同意“能源停火”】据新华社，美国总统特朗普11日在社交媒体发文称，即刻起，俄乌冲突进入“能源停火”状态，双方均已同意。",
-    "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
+    "title": "电网设备迎来“双引擎时刻”：龙头加码回购，行业景气度升温",
+    "link": "https://www.cls.cn/detail/2502286",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "财联社10月12日讯，今日，电力设备板块逆势走强表现亮眼，金冠电气开盘后迅速封上20cm涨停，全天封死，成交额4.71亿元，换手率超过16%。长城电工同样在开盘8分钟后涨停，封单18.6万手。电网设备板块主力资金净流入7.82亿元，位居全市场前列。而在这片热闹的背后是电力设备板块“双引擎”驱动效果的...",
+    "image": "https://image.cls.cn/images/20261012/u7Qlanj7SX_1970x1738.png",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
     "paywall": false,
     "articleId": "a8"
   },
   {
-    "title": "英国：不支持美俄就俄提供柴油达成一致 | 据央视新闻，英国国防大臣韦斯·斯特里廷11日说，英国不支持美俄两国领导人就俄罗斯向美国及全球市场提供柴油达成一致。",
-    "link": "https://www.yicai.com/brief/103389001.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "22:20【英国：不支持美俄就俄提供柴油达成一致】据央视新闻，英国国防大臣韦斯·斯特里廷11日说，英国不支持美俄两国领导人就俄罗斯向美国及全球市场提供柴油达成一致。斯特里廷在英国广播公司当天播出的节目中说，美国总统特朗普此举很大程度上是因为其面临中期选举，迫于缓解民众生活成本压力而同俄方就柴油供应达...",
+    "title": "债券抛售潮与反通胀",
+    "link": "https://opinion.caixin.com/2026-10-12/102492472.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "就在中国人欢度国庆长假期间，发达国家债券市场经历了一场疾风暴雨般的变化。以美国为例，多种期限的美国国债被大面积抛售，债券的收益率节节攀升。债券的价格与其收益率呈反向变化，收益率升高意味着债券价格的下跌，估计前一阶段进入债市的投资者现在可能会忧心忡忡。但对于希望获得一个相对安稳且收益不错的投资者来说，...",
     "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
-    "paywall": false,
-    "articleId": "a9"
-  },
-  {
-    "title": "“上市公司+PE”模式再掀热潮 逾260家公司出资超150亿元投向五大赛道",
-    "link": "https://www.stcn.com/article/detail/4211535.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "一级市场迎来A股公司新一轮资金注入。\n\n据证券时报记者不完全统计，8月1日至10月7日，共有262家A股上市公司披露与专业投资机构共同投资、认购基金份额或参与设立产业基金、私募基金的公告，相关公告超过420条。其中188家公司披露了具体出资金额，合计认缴规模约156亿元；单笔出资中位数为4000万元...",
-    "image": "",
-    "sourceId": "stcn",
-    "sourceName": "证券时报",
-    "sourceFull": "证券时报",
-    "paywall": false,
-    "articleId": "a10"
-  },
-  {
-    "title": "证监会召开资本市场和金融形势专家座谈会，与会专家建议—— 加强稳市机制建设",
-    "link": "https://www.stcn.com/article/detail/4211523.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "10月10日，中国证监会党委书记、主席吴清在北京召开座谈会，与部分上市公司负责人、证券基金机构专家深入交流，就当前资本市场和金融形势充分听取意见建议。吴清表示，上市公司和行业机构是市场的重要主体，希望上市公司和行业机构积极建言献策，共同把资本市场建设好，更好回报广大投资者，为中国式现代化建设积极贡献...",
-    "image": "",
-    "sourceId": "stcn",
-    "sourceName": "证券时报",
-    "sourceFull": "证券时报",
-    "paywall": false,
-    "articleId": "a11"
-  },
-  {
-    "title": "FSB评估全球银行危机处置机制 多地获“重大不合规”评级",
-    "link": "https://finance.caixin.com/2026-10-11/102492316.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】全球金融监管机构对银行危机处置能力的一项最新评估显示，中国内地现有制度在应对系统重要性银行倒闭时，仍存在资金保障不足、应急安排不够成熟等问题，与国际金融稳定标准存在较大差距。\n\n当地时间10月9日，金融稳定理事会（Financial Stability Board，FSB）发布的《公共部门...",
-    "image": "https://img.caixin.com/2026-10-11/179172726605245_560_373.jpg",
     "sourceId": "caixin",
     "sourceName": "财新网",
     "sourceFull": "财新网",
     "paywall": true,
+    "articleId": "a9"
+  },
+  {
+    "title": "从IMF报告看中国增长模式转型的关键",
+    "link": "https://opinion.caixin.com/2026-10-12/102492434.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "2026年9月，国际货币基金组织（IMF）出版报告《迈向中国经济增长新模式》（Toward a New Economic Growth Model for China，下称\"报告\"）。这部238页的报告是IMF亚太部门多年来对华研究的集大成之作，做了两件事：一是系统总结中国过去40余年高速增长何以实...",
+    "image": "",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网",
+    "paywall": true,
+    "articleId": "a10"
+  },
+  {
+    "title": "英特尔、博通CEO齐发警告：资金或成AI发展最大瓶颈",
+    "link": "https://www.cls.cn/detail/2502352",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "财联社10月12日讯（编辑 赵昊）英特尔和博通的CEO警告称，对算力基础设施的需求仍将持续超过供应，但资金获取能力可能成为制约人工智能（AI）热潮的一大因素。\n\n博通CEO陈福阳（Hock Tan）周一（10月12日）在新加坡的一场活动上表示，在整个行业竞相建设基础设施、为日益复杂的AI模型提供算力...",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
+    "paywall": false,
+    "articleId": "a11"
+  },
+  {
+    "title": "两部门：明年4月1日起 新能源汽车增值税出口退税率将下调至9%",
+    "link": "https://www.cls.cn/detail/2502325",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "财联社10月12日讯，财政部发布关于调整部分产品出口退税政策的公告。\n\n现就调整部分产品出口退税政策有关事项公告如下：\n\n一、自2027年4月1日起，将新能源汽车的增值税出口退税率由13%下调至9%。具体产品清单见附件1。\n\n二、自2027年4月1日起，取消电子烟设备装置等产品增值税出口退税。具体产...",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
+    "paywall": false,
     "articleId": "a12"
   },
   {
-    "title": "四部门联手对“速成车”说不 车企火线研读新规对照自查",
-    "link": "https://www.stcn.com/article/detail/4211534.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "直击“速成造车”的痛点，汽车行业监管再升级。10月10日，工业和信息化部等四部门联合公开发布《关于进一步加强汽车产品创新设计和研发测试验证有关管理工作的通知（征求意见稿）》（以下简称《征求意见稿》），对汽车制动系统等关键结构件、可靠性与耐久性验证以及隐藏式门把手、零重力座椅创新设计等提出了要求。\n\n...",
+    "title": "证监会：探索更加适配创新型中小企业的制度和实践",
+    "link": "https://www.cls.cn/detail/2502268",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "证监会：探索更加适配创新型中小企业的制度和实践",
+    "image": "",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
+    "paywall": false,
+    "articleId": "a13"
+  },
+  {
+    "title": "吴清将参加2026金融街论坛年会并发表主题演讲",
+    "link": "https://www.stcn.com/article/detail/4212603.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "人民财讯10月12日电，10月12日，在2026金融街论坛年会新闻发布会上，证监会办公厅副主任王利表示，证监会主席吴清将出席10月19日论坛年会开幕式并作主题演讲，此外，多位证监会领导和有关司局、系统单位负责人也将出席论坛年会有关活动。\n\n王利介绍，10月21日，证监会承办一场主论坛，主题聚焦“建设...",
     "image": "",
     "sourceId": "stcn",
     "sourceName": "证券时报",
     "sourceFull": "证券时报",
     "paywall": false,
-    "articleId": "a13"
-  },
-  {
-    "title": "增值率达764.35% 东百集团跨界“追光” 收监管工作函",
-    "link": "https://www.cls.cn/detail/2501613",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "财联社10月11日讯（记者 吴蔚玲）零售业竞争日趋激烈，东百集团（600693.SH）欲“跨界追光”。公司今日公告，拟3.16亿元收购一家光芯片企业，培育新的业务增长点。\n\n晚间公告显示，公司全资子公司福建东百创智投资有限公司（下称“东百创智”）拟收购杭州快灵光电科技有限公司（下称“快灵光电”）52...",
-    "image": "",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
-    "paywall": false,
     "articleId": "a14"
   },
   {
-    "title": "特朗普现场提议：改名为“特朗普洋”",
-    "link": "https://www.cls.cn/detail/2501592",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "据美国《华盛顿邮报》网站10月10日报道，在试图重新命名墨西哥湾与安大略湖之后，美国总统特朗普10日提出为更多水域更名的想法。\n\n特朗普在田纳西州克拉克斯维尔的一次集会上说：“我们命名了海湾，我们命名了一片美丽的湖泊。现在有人说，你需要命名一条河……我们需要命名一条河。我们需要命名一片海洋。”\n\n特...",
-    "image": "",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
-    "paywall": false,
-    "articleId": "a15"
-  },
-  {
-    "title": "诺贝尔经济学奖明日揭晓，为什么获奖者总出自那几所学校？",
-    "link": "https://www.yicai.com/news/103388802.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "第一财经 2026-10-11 12:58:47 听新闻\n\n每年诺奖季，经济学奖都是压轴大戏。今年的奖项将在北京时间10月12日下午揭晓。\n\n翻开半个多世纪的诺贝尔奖花名册，有一个很少被注意到的反差。物理、化学、医学奖得主中，获奖时身处本学科诺奖得主最多前十高校的只占两三成，七成以上来自其外；经济学...",
+    "title": "中国农业地理｜大闸蟹价格回落，它爬出“包邮区”正去往云贵川​​​​​​​​​​​​​​",
+    "link": "https://www.yicai.com/news/103388798.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2026-10-11 11:59:41 听新闻\n\n作者：冯小芯 ▪ 乐琰 责编：彭海斌\n\n大街小巷随处可见与大闸蟹相关的主题广告、购物场所举办品蟹美食节、蟹卡销售企业自主开办餐厅和酒店来揽客……这是第一财经记者日前在苏州阳澄湖地区所看到的情景。\n\n随着9月中下旬江苏兴化、阳澄湖等核心产区的...",
     "image": "",
     "sourceId": "yicai",
     "sourceName": "第一财经",
     "sourceFull": "第一财经",
     "paywall": false,
-    "articleId": "a16"
+    "articleId": "a15"
   },
   {
-    "title": "基金公司解析《运作办法》修订 立柱架梁 壮大稳市力量提升投资者获得感",
-    "link": "https://www.stcn.com/article/detail/4211524.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "近日，中国证监会就《公开募集证券投资基金运作管理办法（征求意见稿）》（以下简称《运作办法》）及配套规则公开征求意见。\n\n此次修订围绕完善基金投资运作监管要求、支持权益类基金发展、优化监管指标和机制三大方向展开，既为产品创新和投资管理拓展了空间，也通过强化受托责任、规范投资行为，推动公募基金更好服务投...",
-    "image": "",
+    "title": "PCB材料龙头，连续两日跌停！年内涨幅一度超6倍",
+    "link": "https://www.stcn.com/article/detail/4212204.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "今日（10月12日）午后，金安国纪跌停，最新价报64.5元/股，公司股价最新连续两日跌停，金安国纪主营PCB覆铜板。截至发稿，PCB板块午后持续走低，宏昌电子封死跌停，华正新材大跌超9%，广和科技跌超5%，兴森科技、东山精密等均跌超6%，早盘一度涨停的鹏鼎控股，最新涨幅已回落至不足3%。\n\n金安国纪...",
+    "image": "https://static-web.stcn.com/upload/wechat/20261012/nIQ8RKK2dqTRMs6fhlDBkFyT38WHIkcNPwB8yqlicvk6qOzzDdyUlNC3PJfIjXlWLa0oAQbYyZsBPlHTAL4SQIQNGkhgD9rAX9cTbCcOdl6w.png",
     "sourceId": "stcn",
     "sourceName": "证券时报",
     "sourceFull": "证券时报",
     "paywall": false,
+    "articleId": "a16"
+  },
+  {
+    "title": "停兑四个月后宜信宣布资不抵债 北京公安立案侦查",
+    "link": "https://finance.caixin.com/2026-10-12/102492445.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "【财新网】10月12日，根据“平安北京朝阳”通报，目前北京市公安局朝阳分局已对宜信相关公司涉嫌违法犯罪立案侦查，并对实际控制人唐某、赵某等多名犯罪嫌疑人依法采取刑事强制措施。警方同时开通网上报案和邮寄报案渠道，要求投资人通过指定方式登记报案。\n\n在官方通报的前一晚，宜信集团在旗下应用瑞承App、宜人...",
+    "image": "https://img.caixin.com/2026-10-12/179177953048849_560_373.jpg",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网",
+    "paywall": true,
     "articleId": "a17"
   },
   {
-    "title": "创新考察线路火了 老外不看景点看工厂",
-    "link": "https://www.stcn.com/article/detail/4211531.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "“参观考察旅行通常持续约10天、访问4个城市，行程很紧凑。”Andrea Höcker（何雪花）所在的中国国际投资促进中心（德国）主要为德语区（即DACH地区：德国、奥地利、瑞士）提供双向投资促进服务，来自德国的中小企业决策者、地方政府代表、产业集群代表，一年来三次中国，考察这里的汽车、智能制造、生...",
-    "image": "",
+    "title": "王兴兴发声：具身智能的技术临界点将在一两年内到来",
+    "link": "https://www.stcn.com/article/detail/4212207.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "10月12日，在第二十六届中国国际工业博览会（简称“工博会”）开幕式上，宇树科技董事长、总经理兼首席技术官王兴兴再次发声。\n\n王兴兴判断，随着AI模型能力快速提升，具身智能的技术临界点可能比预期来得更快，快的话甚至可能在一两年内出现。\n\n此前，王兴兴曾提出一个机器人通用泛化拐点到来的标准，就是当机器...",
+    "image": "https://static-web.stcn.com/upload/wechat/20261012/BSTzhjFtsmagShfRLlneDHE2icg9Lc4YJC3tzAjdibdztJ5yicbb1eGMPlbvqbojibzAyJSyjvbAgt5zUUJloAbmCSVcqyfy9CYgMdCNEFasga4.png",
     "sourceId": "stcn",
     "sourceName": "证券时报",
     "sourceFull": "证券时报",
@@ -379,11 +387,11 @@ const ALL_ARTICLES = [
     "articleId": "a18"
   },
   {
-    "title": "【数读IPO】国内军用特种线缆细分“小巨人”今日申购",
-    "link": "https://www.cls.cn/detail/2501674",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "财联社10月12日讯，今日有1只新股申购，为北交所的文峰光电。\n\n文峰光电为国内军用特种线缆细分领域的核心供应商。 公司产品广泛应用于航空、航天、兵器、军工电子、舰船、核工业等六大军工领域，是国内具备产品覆盖六大军工领域的特种线缆生产企业之一。公司是国家级专精特新重点“小巨人”企业，主要客户包括中航...",
-    "image": "https://image.cls.cn/images/20261012/A2ryFPzif5_1577x2211.png",
+    "title": "【数据看盘】四家机构净卖出星网锐捷3.33亿元，太平南路席位3.13亿元抢筹莱美药业",
+    "link": "https://www.cls.cn/detail/2502365",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "沪深股通今日合计成交2480.23亿。板块主力资金方面，文化传媒板块主力资金净流入居首。ETF成交方面，纳指科技ETF景顺（159509）成交额环比增长187%。龙虎榜方面，算力硬件股星网锐捷今日跌停，遭四家机构卖出3.33亿。莱美药业今日20CM涨停，获国泰海通证券南京太平南路营业部买入3.13亿...",
+    "image": "https://image.cls.cn/images/20261012/O42fY89BcC_506x669.png",
     "sourceId": "cls",
     "sourceName": "财联社",
     "sourceFull": "财联社",
@@ -391,95 +399,95 @@ const ALL_ARTICLES = [
     "articleId": "a19"
   },
   {
-    "title": "视线｜西班牙近50城爆发大规模抗议 住房危机积重难返首相解散国会",
-    "link": "https://photos.caixin.com/2026-10-11/102492239.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】西班牙民众正走上街头：抗议房租快速上涨、大量房屋用做游客短租、投机基金购置房产逐利，争取将住房确立为基本生存权利、要求政府通过立法管制租金、全面增加公共住房。\n\n据BBC报道，截至2026年10月10日，全西班牙共有约50座城市同步发起了大规模的住房抗议示威运动，示威集中在马德里、瓦伦西亚...",
-    "image": "https://img.caixin.com/2026-10-11/179169101281031_560_373.jpg",
-    "sourceId": "caixin",
-    "sourceName": "财新网",
-    "sourceFull": "财新网",
-    "paywall": true,
+    "title": "一图看懂 | A股三季报预告\"黑马\"频出：单季净利最高预增12倍",
+    "link": "https://www.cls.cn/detail/2502237",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "一图看懂 | A股三季报预告\"黑马\"频出：单季净利最高预增12倍",
+    "image": "https://image.cls.cn/images/20261012/g46v0PR83O_750x3388.jpg",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
+    "paywall": false,
     "articleId": "a20"
   },
   {
-    "title": "人事观察｜补缺倪强 黎族“70后”李锋任海南省委常委、秘书长",
-    "link": "https://china.caixin.com/2026-10-11/102492293.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】空缺超过一年后，新任海南省委秘书长到位。10月10日，海南省副省长、黎族高官李锋履新海南省委常委、秘书长，此前担任该职的倪强于2025年6月落马，2026年6月被公诉。\n\n据《海南日报》消息，10月10日，海南省委办公厅干部大会召开，宣布中央和省委有关人事安排的决定。海南省委书记冯飞讲话。...",
-    "image": "https://img.caixin.com/2026-10-11/179171189178683_560_373.jpg",
-    "sourceId": "caixin",
-    "sourceName": "财新网",
-    "sourceFull": "财新网",
-    "paywall": true,
+    "title": "两名美国经济学家获2026年诺贝尔经济学奖",
+    "link": "https://www.stcn.com/article/detail/4212923.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "人民财讯10月12日电，瑞典皇家科学院12日宣布，将2026年诺贝尔经济学奖授予美国经济学家罗伯特·霍尔和迈克尔·伍德福德，以表彰他们在奠定宏观经济稳定政策的微观经济学基础研究领域的突出贡献。（新华社）",
+    "image": "https://static-web.stcn.com/static/images/zqsb.png",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报",
+    "paywall": false,
     "articleId": "a21"
   },
   {
-    "title": "中国农业地理｜大闸蟹价格回落，它爬出“包邮区”正去往云贵川​​​​​​​​​​​​​​",
-    "link": "https://www.yicai.com/news/103388798.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "第一财经 2026-10-11 11:59:41 听新闻\n\n作者：冯小芯 ▪ 乐琰 责编：彭海斌\n\n大街小巷随处可见与大闸蟹相关的主题广告、购物场所举办品蟹美食节、蟹卡销售企业自主开办餐厅和酒店来揽客……这是第一财经记者日前在苏州阳澄湖地区所看到的情景。\n\n随着9月中下旬江苏兴化、阳澄湖等核心产区的...",
-    "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
-    "paywall": false,
-    "articleId": "a22"
-  },
-  {
-    "title": "霍尔木兹海峡内一出港油轮左舷遭不明发射物击中 | 据央视新闻，当地时间11日，英国海上贸易行动办公室（UKMTO）称收到一份关于霍尔木兹海峡内发生事件的报告。",
-    "link": "https://www.yicai.com/brief/103389003.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "22:20【霍尔木兹海峡内一出港油轮左舷遭不明发射物击中】据央视新闻，当地时间11日，英国海上贸易行动办公室（UKMTO）称收到一份关于霍尔木兹海峡内发生事件的报告。报告称，一艘出港航行的油轮左舷被一枚不明发射物击中，导致船只受损。据报告，所有船员均安全，袭击发生时未报告对环境造成影响。目前事件正在...",
-    "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
-    "paywall": false,
-    "articleId": "a23"
-  },
-  {
-    "title": "中国经济转向新增长模式 IMF的解读与建议",
-    "link": "https://economy.caixin.com/2026-10-11/102492313.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】随着中国原有增长模式面临的挑战与约束日益凸显，中国经济需要寻找新的发展模式，已经成为共识。国际货币基金组织（IMF）近日发布的报告建议，中国需要从以投资和出口为核心的发展模式，转向以消费、服务业和生产率提升为驱动力的新增长模式。\n\n这份名为《迈向中国经济增长新模式》（Toward a Ne...",
-    "image": "https://img.caixin.com/2026-10-11/179172667718583_560_373.jpg",
-    "sourceId": "caixin",
-    "sourceName": "财新网",
-    "sourceFull": "财新网",
-    "paywall": true,
-    "articleId": "a24"
-  },
-  {
-    "title": "伊朗称美国已接受伊方就重开霍尔木兹海峡所提部分条件",
-    "link": "https://www.stcn.com/article/detail/4211578.html",
-    "pubDate": "2026-10-12T07:28:46+08:00",
-    "description": "人民财讯10月12日电，据伊朗方面当地时间10月11日晚消息，伊朗最高国家安全委员会秘书雷扎伊表示，美国针对伊朗提出的重开霍尔木兹海峡条件所作出的回应“不够充分”，并要求美方就伊朗仍存疑虑的问题作出澄清。他还说，“伊朗的外交方针已经改变，且不会回到过去的状态。”\n\n雷扎伊说：“过去两个月里，美方通过...",
+    "title": "华为，最新公布！上半年研发投入1214亿元",
+    "link": "https://www.stcn.com/article/detail/4212722.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "10月12日，华为终端创新技术沟通会在上海举办。华为终端BGCTO、华为终端BG硬件工程与产品开发管理部部长李小龙宣布，2026上半年，华为集团研发投入创历史同期新高，研发投入1214亿元，研发费用率25.9%，同比增长25.2%。这意味着华为今年上半年日均研发投入超6.7亿元。",
     "image": "",
     "sourceId": "stcn",
     "sourceName": "证券时报",
     "sourceFull": "证券时报",
     "paywall": false,
-    "articleId": "a25"
+    "articleId": "a22"
   },
   {
-    "title": "图集｜F1 新加坡站观众超30万人次 带来约1.3亿新元经济增量",
-    "link": "https://photos.caixin.com/2026-10-12/102492323.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "当地时间2026年10月11日20:00，2026赛季世界一级方程式锦标赛（F1）第17站——新加坡大奖赛正赛在滨海湾街道赛道开跑，共62圈。作为F1标志性的夜赛，本站今年首次引入冲刺赛赛制，是本赛季6个冲刺赛周末之一。\n\n当晚，红牛车手马克斯・维斯塔潘从杆位起步，全程领跑，以7.335秒的优势夺冠...",
-    "image": "https://img.caixin.com/2026-10-12/179173519001678_560_373.jpg",
+    "title": "香港财政司长陈茂波：“APEC中国年”",
+    "link": "https://opinion.caixin.com/2026-10-12/102492459.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "服务了30多年的落马洲管制站，10月11日完成历史任务，12日新皇岗口岸将以全新规格延续这条深港通道。新口岸的联检大楼总建筑面积约69万平方米，是全球单体建筑最大的陆路口岸，设计每日处理旅客20万人次，是旧口岸设计处理量的五倍。在“合作查验、一次放行”模式下，完成两地出入境手续将只约需5分钟，较原先...",
+    "image": "",
     "sourceId": "caixin",
     "sourceName": "财新网",
     "sourceFull": "财新网",
     "paywall": true,
+    "articleId": "a23"
+  },
+  {
+    "title": "关于开设“涉企侵权投诉举报专区”的公告",
+    "link": "https://www.yicai.com/news/102062384.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2024-04-11 15:34:53 听新闻\n\n（一）混淆企业主体身份的仿冒性信息；\n\n（二）影响公众公正评判的误导性信息；\n\n（三）不符合企业客观实际的谣言性信息；\n\n（四）贬损丑化企业或企业家的侮辱性信息；\n\n（五）侵害企业家个人隐私的泄密性信息；\n\n（六）其他恶意干扰企业正常经营发...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
+    "paywall": false,
+    "articleId": "a24"
+  },
+  {
+    "title": "图集｜蒙古国草原火蔓延至中国边境 内蒙古启动应急响应",
+    "link": "https://photos.caixin.com/2026-10-12/102492526.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "2026年10月9日13时许，蒙古国境内草原火情蔓延至中蒙边境线。起火点位于锡林郭勒盟东乌珠穆沁旗边境一线的蒙古国境内，受地形和风力影响，大火不断向锡林郭勒盟、兴安盟边境线逼近。内蒙古迅速启动应急响应，紧急调集消防救援机动队伍以及地方扑火队伍共计2000余人，在边境一线分段布控，重点采取携装巡护、以...",
+    "image": "https://img.caixin.com/2026-10-12/179179606903294_560_373.jpg",
+    "sourceId": "caixin",
+    "sourceName": "财新网",
+    "sourceFull": "财新网",
+    "paywall": true,
+    "articleId": "a25"
+  },
+  {
+    "title": "第一财经网络举报受理和处置规则",
+    "link": "https://www.yicai.com/news/102944648.html",
+    "pubDate": "2026-10-12T18:27:58+08:00",
+    "description": "第一财经 2025-12-07 16:59:00 听新闻\n\n在本网刊载的，具有如下性质的违法和不良信息：1、涉政有害类信息；2、色情庸俗类信息；3、谩骂攻击类信息；4、网络侵权类信息；5、虚假谣言信息；6、涉未成年人不良信息；7、营销广告类信息；8、其他违法和不良信息。\n\n假期订阅无忧！我们将为符合...",
+    "image": "",
+    "sourceId": "yicai",
+    "sourceName": "第一财经",
+    "sourceFull": "第一财经",
+    "paywall": false,
     "articleId": "a26"
   },
   {
-    "title": "人事观察｜长期任职工人日报社 55岁河北女常委王娇萍兼任统战部长",
-    "link": "https://china.caixin.com/2026-10-11/102492297.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】河北省委新任常委王娇萍，已兼任省委统战部部长。其前任左力今年59岁（1967年7月出生）。\n\n据10月11日《河北日报》报道，10月10日，民建河北省委成立70周年庆祝大会在石家庄举行。全国政协常委、民建中央副主席司马红出席并讲话。中共河北省委常委、统战部部长王娇萍代表中共河北省委致辞。这...",
-    "image": "https://img.caixin.com/2026-10-11/179171226211585_560_373.jpg",
+    "title": "电力现货市场试点2026：十大“程式化”事实与十大规则改进建议",
+    "link": "https://opinion.caixin.com/2026-10-12/102492497.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "过去一年，笔者以现场或者在线的方式，逐一调研了山东、山西、广东、甘肃、云南、浙江的现货市场（日前/实时）。相关陆续写成的统计分析与结果探讨文章，包含了各省的特色与细节，比如解释一些“怪事”：这里为什么负价高频且深（山东/四川），那里为什么时不时顶格（广东），而极端天气又如何在电力市场留下印迹（广东/...",
+    "image": "",
     "sourceId": "caixin",
     "sourceName": "财新网",
     "sourceFull": "财新网",
@@ -487,27 +495,27 @@ const ALL_ARTICLES = [
     "articleId": "a27"
   },
   {
-    "title": "沙特利雅得机场遇袭致12人死309伤 中航司此前已暂停往返利雅得航班",
-    "link": "https://international.caixin.com/2026-10-11/102492228.html",
-    "pubDate": "2026-10-12T07:28:40+08:00",
-    "description": "【财新网】当地时间10月11日，沙特阿拉伯民航总局更新其局势说明称，10月10日下午，沙特利雅得哈立德国王国际机场遭遇本周第三次袭击，造成至少12人死亡，309人受伤。袭击造成机场设施不同程度的损坏，机场已暂停运营。\n\n也门胡塞武装正在升级其针对沙特的军事压力，本次袭击也成为近期沙特遭遇的最致命袭击...",
-    "image": "https://img.caixin.com/2026-10-11/179169912653974_560_373.jpg",
+    "title": "宜信被立案侦查！实控人等被采取刑事强制措施",
+    "link": "https://www.stcn.com/article/detail/4212120.html",
+    "pubDate": "2026-10-12T18:28:00+08:00",
+    "description": "北京市公安局朝阳分局10月12日通报：近期，该局依法对宜信相关公司涉嫌违法犯罪立案侦查。目前，实际控制人唐某（男，53岁）、赵某（女，51岁）等多名犯罪嫌疑人已被依法采取刑事强制措施。\n\n证券时报各平台所有原创内容，未经书面授权，任何单位及个人不得转载。我社保留追究相关行为主体法律责任的权利。\n\n转...",
+    "image": "https://static-web.stcn.com/upload/wechat/20261012/QXtmiafIpfaQWVfV2xrvWGic3gpD3jW3XaBM27KpPnBGF6ybAxE4OA1e2Rv24iafl5cyINuG35Shc26IjKkZ5jb3uV5nicMXib7gXHd7V1lndfJs.png",
+    "sourceId": "stcn",
+    "sourceName": "证券时报",
+    "sourceFull": "证券时报",
+    "paywall": false,
+    "articleId": "a28"
+  },
+  {
+    "title": "28年受贿4364万余元 江西又一名原“财神爷”胡幼桃一审获刑13年",
+    "link": "https://china.caixin.com/2026-10-12/102492561.html",
+    "pubDate": "2026-10-12T18:27:56+08:00",
+    "description": "至此，2026年已有45名落马中管干部一审获刑。此前44人分别是：赵金云、王昊、陈笑波、章更生、张效廉、唐一军、李微微、张天峰、罗增斌、李海涛、马丰胜、吴存荣、谭瑞松、寇伟、刘卫东、王中和、洪礼和、陈时飞、周喜安、陆克华、齐扎拉、袁光宇、朱芝松、周家斌、刘满仓、周德睿、李春良、段成刚、徐宪平、张建华...",
+    "image": "https://img.caixin.com/2026-10-12/179179957812424_560_373.jpg",
     "sourceId": "caixin",
     "sourceName": "财新网",
     "sourceFull": "财新网",
     "paywall": true,
-    "articleId": "a28"
-  },
-  {
-    "title": "周鸿祎攀岩摔伤，致左膝粉碎性骨折",
-    "link": "https://www.cls.cn/detail/2501614",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "10月11日，周鸿祎发布视频，讲述自己进行攀岩运动时不慎从约3米高处坠落，导致左膝粉碎性骨折的情况。\n\n周鸿祎表示，受伤情影响，未来两三个月内，所有出差、外出活动都将取消，近期一个月需要在家佩戴固定器静养，相关行程全部调整。他感慨，极限攀岩类运动对年长人群存在不小的意外风险。",
-    "image": "https://image.cls.cn/images/20261011/S38DLRi0Dk_1260x2211.jpg",
-    "sourceId": "cls",
-    "sourceName": "财联社",
-    "sourceFull": "财联社",
-    "paywall": false,
     "articleId": "a29"
   },
   {
@@ -547,10 +555,10 @@ const ALL_ARTICLES = [
     "articleId": "a32"
   },
   {
-    "title": "伊朗军方：在霍尔木兹海峡关闭导航识别系统船只将被视为敌对目标",
-    "link": "https://www.cls.cn/detail/2501643",
-    "pubDate": "2026-10-12T07:28:49+08:00",
-    "description": "伊朗军方：在霍尔木兹海峡关闭导航识别系统船只将被视为敌对目标",
+    "title": "吴清将参加2026金融街论坛年会并发表主题演讲",
+    "link": "https://www.cls.cn/detail/2502197",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "吴清将参加2026金融街论坛年会并发表主题演讲",
     "image": "",
     "sourceId": "cls",
     "sourceName": "财联社",
@@ -559,14 +567,14 @@ const ALL_ARTICLES = [
     "articleId": "a33"
   },
   {
-    "title": "胡塞武装称沙特对也门塔伊兹省进行三次空袭 | 据央视新闻，也门胡塞武装控制的马西拉电视台11日傍晚报道，沙特对也门塔伊兹省的两个地区进行了三次空袭。",
-    "link": "https://www.yicai.com/brief/103389044.html",
-    "pubDate": "2026-10-12T07:28:43+08:00",
-    "description": "23:13【胡塞武装称沙特对也门塔伊兹省进行三次空袭】据央视新闻，也门胡塞武装控制的马西拉电视台11日傍晚报道，沙特对也门塔伊兹省的两个地区进行了三次空袭。",
+    "title": "国家外汇局：朱鹤新将出席2026金融街论坛年会开幕式并发表主旨演讲",
+    "link": "https://www.cls.cn/detail/2502199",
+    "pubDate": "2026-10-12T18:28:04+08:00",
+    "description": "国家外汇局：朱鹤新将出席2026金融街论坛年会开幕式并发表主旨演讲",
     "image": "",
-    "sourceId": "yicai",
-    "sourceName": "第一财经",
-    "sourceFull": "第一财经",
+    "sourceId": "cls",
+    "sourceName": "财联社",
+    "sourceFull": "财联社",
     "paywall": false,
     "articleId": "a34"
   },
@@ -691,6 +699,18 @@ const ALL_ARTICLES = [
     "articleId": "a44"
   },
   {
+    "title": "Two Americans win Nobel Prize in Economics for work on boom-bust cycles",
+    "link": "https://www.npr.org/2026/10/09/nx-s1-5996634/nobel-prize-in-economics",
+    "pubDate": "Mon, 12 Oct 2026 04:35:16 -0400",
+    "description": "U.S. economists Robert E. Hall and Michael Woodford are announced as the winners of the 2026 Nobel prize in economics at the Royal Swedish Academy of ...",
+    "image": "",
+    "sourceId": "npr",
+    "sourceName": "NPR Business",
+    "sourceFull": "NPR 商业",
+    "paywall": false,
+    "articleId": "a45"
+  },
+  {
     "title": "It's taking longer to find a new job after losing one",
     "link": "https://www.npr.org/2026/10/11/nx-s1-5995238/jobs-employment-economy-unemployment-benefits",
     "pubDate": "Sun, 11 Oct 2026 05:00:00 -0400",
@@ -700,7 +720,7 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a45"
+    "articleId": "a46"
   },
   {
     "title": "Fired OpenAI employees question the company's commitment to safety",
@@ -712,7 +732,7 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a46"
+    "articleId": "a47"
   },
   {
     "title": "How the beverage aisle got so wild",
@@ -724,7 +744,7 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a47"
+    "articleId": "a48"
   },
   {
     "title": "Despite the controversy, data centers could be attractive to struggling rural towns",
@@ -736,7 +756,7 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a48"
+    "articleId": "a49"
   },
   {
     "title": "How the oil industry is preparing for Hurricane Isaias",
@@ -748,7 +768,7 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a49"
+    "articleId": "a50"
   },
   {
     "title": "OpenAI caught Russians and Iranians using ChatGPT for influence campaigns",
@@ -760,19 +780,31 @@ const ALL_ARTICLES = [
     "sourceName": "NPR Business",
     "sourceFull": "NPR 商业",
     "paywall": false,
-    "articleId": "a50"
+    "articleId": "a51"
   },
   {
-    "title": "As crypto and prediction markets expand, their regulator shrinks",
-    "link": "https://www.npr.org/2026/10/08/nx-s1-5903204/crypto-prediction-markets-cftc-weakens",
-    "pubDate": "Thu, 08 Oct 2026 05:00:00 -0400",
-    "description": "President Donald Trump shakes hands with Commodity Futures Trading Commission (CFTC) Chairman Michael Selig during a meeting with technology leaders i...",
-    "image": "",
-    "sourceId": "npr",
-    "sourceName": "NPR Business",
-    "sourceFull": "NPR 商业",
-    "paywall": false,
-    "articleId": "a51"
+    "title": "Putin is breaching Trump’s ‘energy ceasefire’, Zelenskyy says",
+    "link": "https://www.ft.com/content/863619b6-c4a7-4b1a-8a53-6950d47d1833?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 09:15:04 GMT",
+    "description": "Ukrainian president says Russia conducted strikes on power plants after US president’s announcement on Sunday",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fc7a3a25a-1a81-4a6a-ab0a-2dcd324be9f5.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "sourceId": "ft",
+    "sourceName": "Financial Times",
+    "sourceFull": "金融时报",
+    "paywall": true,
+    "articleId": "a52"
+  },
+  {
+    "title": "Diesel prices slip after Trump claims ‘energy ceasefire’ in Ukraine war",
+    "link": "https://www.ft.com/content/a663781e-2709-41f2-99df-4fb5a6162e6b?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 07:22:42 GMT",
+    "description": "Announcement follows deal with Putin as US president tries to contain impact of higher fuel costs ahead of midterm elections",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F7148f981-16c1-4883-8364-16d76c1c6417.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "sourceId": "ft",
+    "sourceName": "Financial Times",
+    "sourceFull": "金融时报",
+    "paywall": true,
+    "articleId": "a53"
   },
   {
     "title": "Trump faces Republican opposition to his diesel deal with Russia’s Putin",
@@ -784,38 +816,14 @@ const ALL_ARTICLES = [
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
     "paywall": true,
-    "articleId": "a52"
-  },
-  {
-    "title": "Can Russia meet Trump’s diesel demands?",
-    "link": "https://www.ft.com/content/445b2856-a276-4d4c-bdea-44799d771c21?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 17:13:56 GMT",
-    "description": "Ukrainian strikes have triggered the worst petrol shortages since the collapse of the Soviet Union but diesel is not in short supply",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ff81a1fff-349b-44de-b5f2-94a2c68b6cfd.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
-    "sourceId": "ft",
-    "sourceName": "Financial Times",
-    "sourceFull": "金融时报",
-    "paywall": true,
-    "articleId": "a53"
-  },
-  {
-    "title": "Russia steps up bid to kill European defence chiefs, spy agencies warn",
-    "link": "https://www.ft.com/content/5da2dd05-9583-4a75-b018-2c5024383ec4?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 04:00:06 GMT",
-    "description": "Companies increase personal security for top executives as Kremlin orders expansion of sabotage and ‘hybrid’ operations",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fa58a8a41-3a5a-4c2d-8090-287485fd97a1.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
-    "sourceId": "ft",
-    "sourceName": "Financial Times",
-    "sourceFull": "金融时报",
-    "paywall": true,
     "articleId": "a54"
   },
   {
-    "title": "Democrats need a foreign policy",
-    "link": "https://www.ft.com/content/dddba87c-3ed9-4cb5-8fe2-1b1dcc71da6f?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 15:13:30 GMT",
-    "description": "Trump’s approach to the world has left Republicans floundering as the midterms approach. Liberals should plan their own strategy now",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fc34b5f76-a2d9-4f6d-8bba-c093c7864353.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "Trump’s midterm peril",
+    "link": "https://www.ft.com/content/62bab2c8-d4e2-4ec2-a911-80439f61f238?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 04:00:17 GMT",
+    "description": "Losing the Republican majority in the chamber would be bruising for the president. A vote in rural Iowa may determine his fate",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fd29a8477-3337-4ae7-8f60-6cc5e5326159.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -823,11 +831,11 @@ const ALL_ARTICLES = [
     "articleId": "a55"
   },
   {
-    "title": "US hits commercial tanker in Gulf of Oman as tensions flare",
-    "link": "https://www.ft.com/content/f9b9f937-97b0-4a03-90f6-05d7c7344ab9?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 19:53:56 GMT",
-    "description": "Ship tried to break through American naval blockade of Iranian ports, Central Command says of its first attack in a month",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fdcad61e7-3ca6-4df5-8013-dd77b8c83eae.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "The huge lurking leverage of AI hyperscalers",
+    "link": "https://www.ft.com/content/17a207f4-1563-48af-91e3-14bac89ab4b8?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 04:00:07 GMT",
+    "description": "While equity investors look to sunny futures, creditors are scrutinising liabilities like leases on data centres",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F74a609c4-8ff9-4c5e-ba85-217449746fc6.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -835,11 +843,11 @@ const ALL_ARTICLES = [
     "articleId": "a56"
   },
   {
-    "title": "India’s ‘Cockroach’ movement plans more protests after release of leaders",
-    "link": "https://www.ft.com/content/9b30ee59-b542-48b8-85f6-d60dce897342?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 13:07:40 GMT",
-    "description": "Abhijeet Dipke of the youth-led Cockroach Janta Party was freed by a court order as police tightened security in New Delhi",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F84241f17-e035-429d-8d99-e4d8f1804ab7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "Nato should prepare for deadly Russian ‘hybrid’ attack, says Poland",
+    "link": "https://www.ft.com/content/0c5a10f4-5aca-456e-9c3a-4c4dc8132a63?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 04:00:16 GMT",
+    "description": "Foreign minister Radosław Sikorski says risk of casualties is rising as Moscow escalates sabotage campaign on European soil",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F9939b7fe-ef43-4ddd-a708-cdaca6187f80.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -847,16 +855,52 @@ const ALL_ARTICLES = [
     "articleId": "a57"
   },
   {
-    "title": "Trump is failing to arrest decline in popularity, FT poll shows",
-    "link": "https://www.ft.com/content/f6d29414-412d-4422-a5f4-cb3338f73d3a",
-    "pubDate": "Sun, 11 Oct 2026 04:00:06 GMT",
-    "description": "Voters increasingly doubt the president’s ability to steer the economy with weeks to go until elections",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5b04051b-63e1-43bc-89ea-83fa53f3009e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "Wall Street’s record-breaking trading streak set to cool",
+    "link": "https://www.ft.com/content/50bb9758-abf7-43a4-bd8b-0c1e5895b4c2?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 04:00:17 GMT",
+    "description": "Analysts forecast sharp slowdown when banks report third-quarter results next week after a bumper start to the year",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5a7b6a03-d96e-4596-aa0c-c8ac2af569fc.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
     "paywall": true,
     "articleId": "a58"
+  },
+  {
+    "title": "Robert E. Hall and Michael Woodford Awarded Nobel for Economics",
+    "link": "https://www.nytimes.com/2026/10/12/business/nobel-prize-economics.html",
+    "pubDate": "Mon, 12 Oct 2026 10:22:00 +0000",
+    "description": "Robert E. Hall and Michael Woodford were awarded the prize for their insights that helped policymakers become “better equipped to deal with shocks in ...",
+    "image": "https://static01.nyt.com/images/2026/10/12/multimedia/12nobel-econ-fpmj/12nobel-econ-fpmj-mediumSquareAt3X.jpg",
+    "sourceId": "nyt",
+    "sourceName": "NYT Business",
+    "sourceFull": "纽约时报商业版",
+    "paywall": true,
+    "articleId": "a59"
+  },
+  {
+    "title": "World’s Energy Order Tested Again as Iran War’s Reach Extends Further",
+    "link": "https://www.nytimes.com/2026/10/12/business/middle-east-oil-exports-houthi-saudi.html",
+    "pubDate": "Mon, 12 Oct 2026 09:03:18 +0000",
+    "description": "“We are entering an age of prolonged insecurity,” one former U.S. energy official said of what have become chronic threats on the Middle East’s energy...",
+    "image": "https://static01.nyt.com/images/2026/10/12/multimedia/12biz-gulfenergy-turmoil1-vwfc/12biz-gulfenergy-turmoil1-vwfc-mediumSquareAt3X.jpg",
+    "sourceId": "nyt",
+    "sourceName": "NYT Business",
+    "sourceFull": "纽约时报商业版",
+    "paywall": true,
+    "articleId": "a60"
+  },
+  {
+    "title": "America’s Favorite Fruit Is Being Bruised by the Iran War",
+    "link": "https://www.nytimes.com/2026/10/12/business/economy/bananas-iran-war.html",
+    "pubDate": "Mon, 12 Oct 2026 09:01:34 +0000",
+    "description": "The journey of one banana from farm to store shows how the war’s economic effects have cascaded into some surprising industries.",
+    "image": "https://static01.nyt.com/images/2026/09/30/multimedia/00dc-bananas-01-pjcq/00dc-bananas-01-pjcq-mediumSquareAt3X.jpg",
+    "sourceId": "nyt",
+    "sourceName": "NYT Business",
+    "sourceFull": "纽约时报商业版",
+    "paywall": true,
+    "articleId": "a61"
   },
   {
     "title": "Three Mark Zuckerbergs, Three Surprisingly Different Men",
@@ -868,7 +912,7 @@ const ALL_ARTICLES = [
     "sourceName": "NYT Business",
     "sourceFull": "纽约时报商业版",
     "paywall": true,
-    "articleId": "a59"
+    "articleId": "a62"
   },
   {
     "title": "San Francisco Is Still Pushing to Turn Offices Into Homes",
@@ -880,19 +924,19 @@ const ALL_ARTICLES = [
     "sourceName": "NYT Business",
     "sourceFull": "纽约时报商业版",
     "paywall": true,
-    "articleId": "a60"
+    "articleId": "a63"
   },
   {
     "title": "Justice Dept. Is Investigating TV Networks Over Trump Pool Coverage",
     "link": "https://www.nytimes.com/2026/10/10/business/media/trump-justice-department-tv-networks.html",
     "pubDate": "Sun, 11 Oct 2026 02:40:53 +0000",
     "description": "Major TV networks were notified on Friday that the department was examining whether they violated antitrust laws when they suspended pool coverage of ...",
-    "image": "https://static01.nyt.com/images/2026/10/10/multimedia/10biz-media-investigation-gpjh/10biz-media-investigation-gpjh-mediumSquareAt3X.jpg",
+    "image": "https://static01.nyt.com/images/2026/10/10/multimedia/10biz-media-investigation-gpjh/10biz-media-investigation-gpjh-mediumSquareAt3X-v2.jpg",
     "sourceId": "nyt",
     "sourceName": "NYT Business",
     "sourceFull": "纽约时报商业版",
     "paywall": true,
-    "articleId": "a61"
+    "articleId": "a64"
   },
   {
     "title": "Big Controversy Upends a Contest About Microscopic Videos",
@@ -904,7 +948,7 @@ const ALL_ARTICLES = [
     "sourceName": "NYT Business",
     "sourceFull": "纽约时报商业版",
     "paywall": true,
-    "articleId": "a62"
+    "articleId": "a65"
   },
   {
     "title": "Target Says It’s Not Working With ICE Amid Uproar Over Parking Lot Use",
@@ -916,50 +960,14 @@ const ALL_ARTICLES = [
     "sourceName": "NYT Business",
     "sourceFull": "纽约时报商业版",
     "paywall": true,
-    "articleId": "a63"
-  },
-  {
-    "title": "Trump Sends Obamacare ‘Refund’ Checks Ahead of Midterm Elections",
-    "link": "https://www.nytimes.com/2026/10/09/business/trump-obamacare-refund-checks.html",
-    "pubDate": "Fri, 09 Oct 2026 16:41:24 +0000",
-    "description": "The $500 checks are accompanied by a letter signed by the president that criticizes the Biden administration for overcharging Americans for health ins...",
-    "image": "https://static01.nyt.com/images/2026/10/09/multimedia/09dc-trump-checks-ztmg/09dc-trump-checks-ztmg-mediumSquareAt3X.jpg",
-    "sourceId": "nyt",
-    "sourceName": "NYT Business",
-    "sourceFull": "纽约时报商业版",
-    "paywall": true,
-    "articleId": "a64"
-  },
-  {
-    "title": "Private Medicare Plans Are Raising Costs And Forcing Millions To Find New Insurance",
-    "link": "https://www.nytimes.com/2026/10/09/business/medicare-private-health-care-costs.html",
-    "pubDate": "Fri, 09 Oct 2026 22:04:42 +0000",
-    "description": "As enrollment for Medicare Advantage begins this month, older Americans are confronting fewer options because insurers are discontinuing coverage in m...",
-    "image": "https://static01.nyt.com/images/2026/10/09/multimedia/09biz-medicare-crunch-zmlq/09biz-medicare-crunch-zmlq-mediumSquareAt3X.jpg",
-    "sourceId": "nyt",
-    "sourceName": "NYT Business",
-    "sourceFull": "纽约时报商业版",
-    "paywall": true,
-    "articleId": "a65"
-  },
-  {
-    "title": "China and Europe Step Back From Trade War With Limits on Chinese Car Exports",
-    "link": "https://www.nytimes.com/2026/10/09/business/china-european-union-trade.html",
-    "pubDate": "Fri, 09 Oct 2026 18:54:08 +0000",
-    "description": "The European Union said the deal could roughly halve shipments of hybrid vehicles from China in the next four years. But it also could lead to an even...",
-    "image": "https://static01.nyt.com/images/2026/10/09/multimedia/09Biz-China-EU-tzgq/09Biz-China-EU-tzgq-mediumSquareAt3X.jpg",
-    "sourceId": "nyt",
-    "sourceName": "NYT Business",
-    "sourceFull": "纽约时报商业版",
-    "paywall": true,
     "articleId": "a66"
   },
   {
-    "title": "Iran war threatens Healey's Budget plans, think tank warns",
+    "title": "Healey faces £35bn Budget challenge to meet spending pledges, says think tank",
     "link": "https://www.bbc.co.uk/news/articles/cm78pwdp3n5qo?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Sun, 11 Oct 2026 23:04:07 GMT",
-    "description": "The impact of the Iran war poses significant risks for the government’s spending plans, the Institute for Fiscal Studies says.",
-    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/48bb/live/aeeccb70-c3e4-11f1-badc-154546719036.jpg",
+    "pubDate": "Mon, 12 Oct 2026 08:50:22 GMT",
+    "description": "The Institute for Fiscal Studies says the government will need a \"top-up\" of billions of pounds if it wants to meet its spending plans.",
+    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1d71/live/21ebf010-c606-11f1-a64c-550be9e3c66b.jpg",
     "sourceId": "bbc",
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
@@ -967,9 +975,9 @@ const ALL_ARTICLES = [
     "articleId": "a67"
   },
   {
-    "title": "Debt advice that may leave you owing even more money",
+    "title": "How to avoid getting stung if you miss a credit card payment",
     "link": "https://www.bbc.co.uk/news/articles/c84g1xz1l9ddo?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Sun, 11 Oct 2026 23:19:07 GMT",
+    "pubDate": "Mon, 12 Oct 2026 09:11:46 GMT",
     "description": "People are increasingly falling behind on credit card repayments, so here's the best way to get debt advice.",
     "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a441/live/c56267d0-c31b-11f1-bd97-fbe5a3482cde.jpg",
     "sourceId": "bbc",
@@ -977,6 +985,18 @@ const ALL_ARTICLES = [
     "sourceFull": "BBC 商业",
     "paywall": false,
     "articleId": "a68"
+  },
+  {
+    "title": "Trump faces growing backlash over plans to import diesel from Russia",
+    "link": "https://www.bbc.co.uk/news/articles/cjn5v21py07vo?at_medium=RSS&at_campaign=rss",
+    "pubDate": "Sun, 11 Oct 2026 23:18:45 GMT",
+    "description": "Both Republican and Democratic lawmakers have criticised the deal, which was announced weeks before the US midterm elections.",
+    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c44f/live/e68c78a0-c5c9-11f1-9042-5f0794d5e895.jpg",
+    "sourceId": "bbc",
+    "sourceName": "BBC Business",
+    "sourceFull": "BBC 商业",
+    "paywall": false,
+    "articleId": "a69"
   },
   {
     "title": "Roofing scammers con homeowners out of thousands of pounds",
@@ -988,19 +1008,31 @@ const ALL_ARTICLES = [
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
     "paywall": false,
-    "articleId": "a69"
+    "articleId": "a70"
   },
   {
     "title": "AI is less regulated than milk, says Microsoft president",
     "link": "https://www.bbc.co.uk/news/articles/c6rmy7zmvx3lo?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Sun, 11 Oct 2026 23:07:35 GMT",
+    "pubDate": "Mon, 12 Oct 2026 07:47:37 GMT",
     "description": "Brad Smith calls for global rules on AI, and says the UK is in the \"best position\" to lead the charge.",
-    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/fc1a/live/a75b5120-c40b-11f1-9a39-31b474234113.jpg",
+    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/da16/live/eacee500-c610-11f1-aae8-850c1751d51d.jpg",
     "sourceId": "bbc",
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
     "paywall": false,
-    "articleId": "a70"
+    "articleId": "a71"
+  },
+  {
+    "title": "Documents falsified to evade tax on Abramovich's wealth, BBC finds",
+    "link": "https://www.bbc.co.uk/news/articles/c64g1l5389kvo?at_medium=RSS&at_campaign=rss",
+    "pubDate": "Mon, 12 Oct 2026 05:00:52 GMT",
+    "description": "Backdated paperwork also made the Russian oligarch’s yachts and mansions disappear from accounts, investigation finds.",
+    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/abc3/live/b06f9880-c621-11f1-bc2e-018d645d8d21.jpg",
+    "sourceId": "bbc",
+    "sourceName": "BBC Business",
+    "sourceFull": "BBC 商业",
+    "paywall": false,
+    "articleId": "a72"
   },
   {
     "title": "Citroen revives the 2CV for an electric age",
@@ -1012,7 +1044,7 @@ const ALL_ARTICLES = [
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
     "paywall": false,
-    "articleId": "a71"
+    "articleId": "a73"
   },
   {
     "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
@@ -1024,7 +1056,7 @@ const ALL_ARTICLES = [
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
     "paywall": false,
-    "articleId": "a72"
+    "articleId": "a74"
   },
   {
     "title": "Analysis: Trump's shock Russia deal highlights mounting pressure to curb fuel prices",
@@ -1036,38 +1068,14 @@ const ALL_ARTICLES = [
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
     "paywall": false,
-    "articleId": "a73"
-  },
-  {
-    "title": "Ukraine strikes Yandex data centre in third attack on Russian tech giant",
-    "link": "https://www.bbc.co.uk/news/articles/cw0k0g57mk3zo?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Sun, 11 Oct 2026 14:38:10 GMT",
-    "description": "It is the third time this week that Ukraine has targeted Russian tech giant Yandex, forcing the company to suspend its operations.",
-    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/92b1/live/fca86430-c56c-11f1-a64c-550be9e3c66b.jpg",
-    "sourceId": "bbc",
-    "sourceName": "BBC Business",
-    "sourceFull": "BBC 商业",
-    "paywall": false,
-    "articleId": "a74"
-  },
-  {
-    "title": "Boots has a new owner: Three ways it could affect you",
-    "link": "https://www.bbc.co.uk/news/articles/c63djxry8124o?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Fri, 09 Oct 2026 23:01:14 GMT",
-    "description": "The stalwart of Britain's High Street has been sold to a Canadian billionaire family. What will that mean for you?",
-    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/120c/live/9c937870-c489-11f1-a915-a1cdb09cbaf6.jpg",
-    "sourceId": "bbc",
-    "sourceName": "BBC Business",
-    "sourceFull": "BBC 商业",
-    "paywall": false,
     "articleId": "a75"
   },
   {
-    "title": "US threatens to block arms for Ukraine over attacks on Russian refineries",
-    "link": "https://www.ft.com/content/68fd8c4f-6f34-4f6e-a52c-76f635164031?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 18:40:51 GMT",
-    "description": "Officials lobby European capitals and Kyiv following Trump’s diesel deal with Putin",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F98a23be1-426e-4541-9e35-4c14e5952de1.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "There is a smarter way to tax the rich",
+    "link": "https://www.ft.com/content/e6c9d380-7108-405a-8393-5240771809fe",
+    "pubDate": "Mon, 12 Oct 2026 04:00:16 GMT",
+    "description": "Increasing US corporate tax raises government revenues without harming the tax base",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F6593bfe6-6db1-420f-a484-8f9c64a77ad7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -1075,11 +1083,11 @@ const ALL_ARTICLES = [
     "articleId": "a76"
   },
   {
-    "title": "Houthis show military reach with deadly missile strikes on Riyadh",
-    "link": "https://www.ft.com/content/bd2c7385-184e-425e-997f-0f5a8c54184e?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 13:04:47 GMT",
-    "description": "Yemen’s Iran-backed militants demonstrate that they are not just ‘guys in flip-flops’",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F96ed1cf5-2634-4157-8f57-58e33a36c668.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "Riyadh defiant as Houthis launch new missile strikes on Saudi Arabia",
+    "link": "https://www.ft.com/content/ad0b6e93-708c-46c6-a1f2-e6248c934faf?syn-25a6b1a6=1",
+    "pubDate": "Mon, 12 Oct 2026 08:45:20 GMT",
+    "description": "International oil company chiefs stay away from energy congress after airport attacks",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F284ca6bb-27f7-4f50-8e22-b3b8d6c19495.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -1087,11 +1095,11 @@ const ALL_ARTICLES = [
     "articleId": "a77"
   },
   {
-    "title": "Oil chiefs pull out of Riyadh energy congress after airport missile strike",
-    "link": "https://www.ft.com/content/a01776ea-4a12-4195-8820-e43a885ba5fe?syn-25a6b1a6=1",
-    "pubDate": "Sun, 11 Oct 2026 16:56:50 GMT",
-    "description": "BP and others skip World Petroleum Council meeting after 12 killed in Houthi attack",
-    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F45299005-3c7d-4843-bc62-cd084dffcbfa.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+    "title": "Not just ‘guys in flip-flops’: Houthis show reach with deadly strikes on Riyadh",
+    "link": "https://www.ft.com/content/bd2c7385-184e-425e-997f-0f5a8c54184e?syn-25a6b1a6=1",
+    "pubDate": "Sun, 11 Oct 2026 13:04:47 GMT",
+    "description": "Yemen’s Iran-backed militants have evolved from insurgency into potent armed force",
+    "image": "https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F96ed1cf5-2634-4157-8f57-58e33a36c668.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
     "sourceId": "ft",
     "sourceName": "Financial Times",
     "sourceFull": "金融时报",
@@ -1243,11 +1251,11 @@ const ALL_ARTICLES = [
     "articleId": "a90"
   },
   {
-    "title": "Burnham promises to curb non-compete rules in job contracts",
-    "link": "https://www.bbc.co.uk/news/articles/c63r5wx8z8wzo?at_medium=RSS&at_campaign=rss",
-    "pubDate": "Fri, 09 Oct 2026 16:15:30 GMT",
-    "description": "The prime minister says restrictions on what workers can do after leaving roles have \"gone too far\".",
-    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/887d/live/a06cb1b0-c3de-11f1-95ba-dba767ffba7e.png",
+    "title": "Why some have no choice but to pay costly oil prices",
+    "link": "https://www.bbc.co.uk/news/articles/cqgm09xvlvjeo?at_medium=RSS&at_campaign=rss",
+    "pubDate": "Mon, 12 Oct 2026 05:27:55 GMT",
+    "description": "The rural communities vulnerable to heating oil prices rises as the weather gets colder.",
+    "image": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a607/live/d6cc5370-c3c3-11f1-8fc5-335d62f6730b.jpg",
     "sourceId": "bbc",
     "sourceName": "BBC Business",
     "sourceFull": "BBC 商业",
@@ -1255,6 +1263,7 @@ const ALL_ARTICLES = [
     "articleId": "a91"
   }
 ];
+const BUILD_TIME = "2026-10-12T18:28:05.841401+08:00";
 let activeSource = 'all';
 let searchKeyword = '';
 
@@ -1395,6 +1404,19 @@ function closeArticle() {
 
 function setSource(id) { activeSource = id; renderAll(); }
 function handleSearch(val) { searchKeyword = val.trim(); renderAll(); }
+
+// 定时检测云端是否有新版本（每10分钟），有则温和提示，不强制刷新
+async function checkForUpdates() {
+  try {
+    const resp = await fetch('update.json?_=' + Date.now());
+    if (!resp.ok) return;
+    const data = await resp.json();
+    if (data.buildIso && data.buildIso !== BUILD_TIME) {
+      document.getElementById('updateBanner').classList.add('show');
+    }
+  } catch (e) {}
+}
+setInterval(checkForUpdates, 10 * 60 * 1000);
 renderAll();
 </script>
 </body>
