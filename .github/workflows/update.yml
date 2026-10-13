@@ -28,6 +28,8 @@ jobs:
           pip install feedparser requests beautifulsoup4
 
       - name: 抓取新闻并生成 HTML
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/fetch_news.py
 
       - name: 提交更新
